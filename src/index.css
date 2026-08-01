@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+:root {
+  --brand-green: #33C98C;
+  --brand-teal: #2CC2A5;
+  --brand-light-green: #9EDB45;
+  --brand-yellow: #F8D61D;
+  --brand-charcoal: #4B4B4D;
+  --brand-dark: #303033;
+  --background-white: #FFFFFF;
+  --background-soft-green: #ECFAF4;
+  --background-soft-teal: #EAF9F7;
+  --background-soft-yellow: #FFF9D9;
+  --background-light-grey: #F5F7F6;
+  --text-heading: #303033;
+  --text-body: #5B5B5D;
+  --border-light: #DDE8E3;
+}
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Manrope", "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-brand-green: #33C98C;
+  --color-brand-green-hover: #2AAA76;
+  --color-brand-teal: #2CC2A5;
+  --color-brand-light-green: #9EDB45;
+  --color-brand-yellow: #F8D61D;
+  --color-brand-yellow-hover: #E6C40D;
+  --color-brand-charcoal: #4B4B4D;
+  --color-brand-dark: #303033;
+  
+  --color-bg-soft-green: #ECFAF4;
+  --color-bg-soft-teal: #EAF9F7;
+  --color-bg-soft-yellow: #FFF9D9;
+  --color-bg-light-grey: #F5F7F6;
+  
+  --color-text-heading: #303033;
+  --color-text-body: #5B5B5D;
+  --color-border-light: #DDE8E3;
+}
+
+body {
+  background-color: var(--background-white);
+  color: var(--text-body);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F5F7F6;
+}
+::-webkit-scrollbar-thumb {
+  background: #33C98C;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2CC2A5;
+}
+
+/* Form Focus Ring Utility */
+input:focus, select:focus, textarea:focus {
+  border-color: #33C98C !important;
+  box-shadow: 0 0 0 3px rgba(51, 201, 140, 0.2) !important;
+  outline: none !important;
+}
+
+/* Button & Card animations */
+.brand-card-hover {
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.brand-card-hover:hover {
+  transform: translateY(-3px);
+  border-color: #33C98C !important;
+  box-shadow: 0 10px 25px -5px rgba(51, 201, 140, 0.12), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: inline-flex;
+  animation: marquee 25s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
