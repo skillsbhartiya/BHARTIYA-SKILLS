@@ -100,7 +100,7 @@ export const companyConfig: CompanyConfig = {
     alternateEmail: "skillsbhartiya@gmail.com",
     phone: "+91 99102 14883",
     alternatePhone: "+91 8860346363",
-    whatsapp: "919910214883",
+    whatsapp: "918860346363",
   },
 
   aboutContent: {

@@ -77,6 +77,19 @@ Make the tone extremely formal, technically precise, and highly reassuring for g
     });
   });
 
+  // Express routes for sitemap.xml and robots.txt
+  app.get("/sitemap.xml", (req, res) => {
+    const sitemapPath = path.join(process.cwd(), "public", "sitemap.xml");
+    res.header("Content-Type", "application/xml");
+    res.sendFile(sitemapPath);
+  });
+
+  app.get("/robots.txt", (req, res) => {
+    const robotsPath = path.join(process.cwd(), "public", "robots.txt");
+    res.header("Content-Type", "text/plain");
+    res.sendFile(robotsPath);
+  });
+
   // Vite development middleware vs production static server
   if (process.env.NODE_ENV !== "production") {
     const vite = await createViteServer({
