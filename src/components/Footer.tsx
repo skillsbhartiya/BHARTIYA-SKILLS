@@ -111,14 +111,15 @@ export default function Footer({ setView, openEnquiryModal }: FooterProps) {
         {/* Contact and Newsletter */}
         <div className="space-y-4">
           <h4 className="text-xs font-bold uppercase tracking-wider text-[#9EDB45] border-l-4 border-[#33C98C] pl-2.5 mb-4 font-display">
-            Registered Office
+            Our Address
           </h4>
           <ul className="space-y-3 text-xs text-[#D6D6D6]">
             <li className="flex items-start gap-2.5">
               <MapPin className="h-4 w-4 text-[#F8D61D] flex-shrink-0 mt-0.5" />
               <span>
-                J9, Block J, Sector 63,<br />
-                Noida, Uttar Pradesh 201309
+                Bhartiya Skills LLP,<br />
+                J-09, Sector 63,<br />
+                Noida, Uttar Pradesh
               </span>
             </li>
             <li className="flex items-center gap-2.5">

@@ -421,7 +421,7 @@ export default function App() {
                   Our Execution Portfolio
                 </h1>
                 <p className="text-[#5B5B5D] text-xs sm:text-sm max-w-xl mx-auto font-sans">
-                  Browse through some of the training laboratories and smart centers commissioned by our logistics team for academic and government bodies in India.
+                  Browse through some of the training laboratories and smart centers commissioned by our team for academic and Government institute of india .
                 </p>
               </div>
 
@@ -736,8 +736,8 @@ export default function App() {
                       <div className="flex items-start gap-3">
                         <MapPin className="h-5 w-5 text-[#33C98C] flex-shrink-0 mt-0.5" />
                         <div>
-                          <strong className="text-[#303033]">Registered Office &amp; Technical Center:</strong>
-                          <p className="text-[#5B5B5D] text-xs mt-0.5">J9, Block J, Sector 63, Noida, Uttar Pradesh 201309</p>
+                          <strong className="text-[#303033]">Our Address &amp; Technical Center:</strong>
+                          <p className="text-[#5B5B5D] text-xs mt-0.5">Bhartiya Skills LLP, J-09, Sector 63, Noida, Uttar Pradesh</p>
                         </div>
                       </div>
 
@@ -763,9 +763,9 @@ export default function App() {
                   <div className="aspect-video w-full rounded-xl bg-[#ECFAF4] border border-[#2CC2A5] overflow-hidden relative shadow-xs flex items-center justify-center text-center p-4">
                     <div className="space-y-2">
                       <Map className="h-8 w-8 text-[#33C98C] mx-auto animate-bounce" />
-                      <h4 className="font-bold font-display uppercase text-[#303033] text-xs tracking-tight">Registered Office Location</h4>
+                      <h4 className="font-bold font-display uppercase text-[#303033] text-xs tracking-tight">Our Address</h4>
                       <p className="text-[#5B5B5D] text-xs max-w-xs leading-relaxed font-sans font-mono">
-                        J9, Block J, Sector 63, Noida, Uttar Pradesh 201309
+                        Bhartiya Skills LLP, J-09, Sector 63, Noida, Uttar Pradesh
                       </p>
                     </div>
                   </div>
@@ -1514,8 +1514,8 @@ export default function App() {
                   <a href="mailto:skillsbhartiya@gmail.com" className="text-white font-mono font-bold text-sm sm:text-base leading-none hover:text-[#33C98C] transition-colors">skillsbhartiya@gmail.com</a>
                 </div>
                 <div className="space-y-2">
-                  <h4 className="text-xs font-mono font-bold uppercase tracking-widest text-[#9EDB45]">Registered Office</h4>
-                  <p className="text-[#D6D6D6] text-xs leading-tight font-sans">J9, Block J, Sector 63, Noida, Uttar Pradesh 201309</p>
+                  <h4 className="text-xs font-mono font-bold uppercase tracking-widest text-[#9EDB45]">Our Address</h4>
+                  <p className="text-[#D6D6D6] text-xs leading-tight font-sans">Bhartiya Skills LLP, J-09, Sector 63, Noida, Uttar Pradesh</p>
                 </div>
               </div>
             </section>
@@ -1577,20 +1577,7 @@ export default function App() {
             <div className="mt-3 space-y-2.5">
               <div className="rounded-xl bg-[#F5F7F6] p-2.5 flex items-center justify-between">
                 <div>
-                  <p className="text-[10px] font-bold uppercase tracking-wider text-[#2CC2A5]">Main Office</p>
-                  <p className="text-xs font-bold text-[#303033] font-mono">+91 99102 14883</p>
-                </div>
-                <a
-                  href="tel:+919910214883"
-                  className="rounded-lg bg-[#33C98C] px-3 py-1 text-[10px] font-bold font-display uppercase text-white hover:bg-[#2AAA76] transition-colors"
-                >
-                  Call Now
-                </a>
-              </div>
-
-              <div className="rounded-xl bg-[#F5F7F6] p-2.5 flex items-center justify-between">
-                <div>
-                  <p className="text-[10px] font-bold uppercase tracking-wider text-[#2CC2A5]">Support / Requisitions</p>
+                  <p className="text-[10px] font-bold uppercase tracking-wider text-[#2CC2A5]">Direct Phone &amp; WhatsApp</p>
                   <p className="text-xs font-bold text-[#303033] font-mono">+91 88603 46363</p>
                 </div>
                 <a

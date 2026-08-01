@@ -39,22 +39,13 @@ export default function AboutPage({ setView, openEnquiryModal, setActiveLabByNam
     "description": aboutContent.subHeading,
     "url": window.location.origin,
     "logo": `${window.location.origin}/logo.svg`,
-    "address": [
-      {
-        "@type": "PostalAddress",
-        "streetAddress": "75, Shradhanand Marg",
-        "addressLocality": "Delhi",
-        "postalCode": "110006",
-        "addressCountry": "IN"
-      },
-      {
-        "@type": "PostalAddress",
-        "streetAddress": "A-202, Sector 63",
-        "addressLocality": "Noida",
-        "addressRegion": "Uttar Pradesh",
-        "addressCountry": "IN"
-      }
-    ],
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "J-09, Sector 63",
+      "addressLocality": "Noida",
+      "addressRegion": "Uttar Pradesh",
+      "addressCountry": "IN"
+    },
     "contactPoint": {
       "@type": "ContactPoint",
       "telephone": companyInfo.phone,
@@ -460,26 +451,14 @@ export default function AboutPage({ setView, openEnquiryModal, setActiveLabByNam
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-[#F5F7F6] border border-[#DDE8E3] p-5 rounded-xl space-y-3">
-              <div className="flex items-center gap-2 text-xs font-bold font-display uppercase text-[#303033]">
-                <Building2 className="h-4 w-4 text-[#33C98C]" />
-                <span>Head Office</span>
-              </div>
-              <p className="text-xs text-[#5B5B5D] font-sans leading-relaxed">
-                {companyInfo.headOffice}
-              </p>
+          <div className="bg-[#F5F7F6] border border-[#DDE8E3] p-5 rounded-xl space-y-3">
+            <div className="flex items-center gap-2 text-xs font-bold font-display uppercase text-[#303033]">
+              <Building2 className="h-4 w-4 text-[#33C98C]" />
+              <span>Our Address</span>
             </div>
-
-            <div className="bg-[#F5F7F6] border border-[#DDE8E3] p-5 rounded-xl space-y-3">
-              <div className="flex items-center gap-2 text-xs font-bold font-display uppercase text-[#303033]">
-                <Building2 className="h-4 w-4 text-[#33C98C]" />
-                <span>Branch Office</span>
-              </div>
-              <p className="text-xs text-[#5B5B5D] font-sans leading-relaxed">
-                {companyInfo.branchOffice}
-              </p>
-            </div>
+            <p className="text-xs sm:text-sm text-[#303033] font-semibold font-sans leading-relaxed">
+              Bhartiya Skills LLP, J-09, Sector 63, Noida, Uttar Pradesh
+            </p>
           </div>
 
           <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-[#DDE8E3]">
@@ -522,7 +501,7 @@ export default function AboutPage({ setView, openEnquiryModal, setActiveLabByNam
               </a>
 
               <a
-                href="https://maps.google.com/?q=75+Shradhanand+Marg+Delhi+110006"
+                href="https://maps.google.com/?q=Bhartiya+Skills+LLP+J-09+Sector+63+Noida+Uttar+Pradesh"
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center gap-1.5 bg-[#303033] hover:bg-[#1A1A1C] text-white font-bold font-display text-xs uppercase px-4 py-2 rounded-lg shadow-xs transition-colors"
