@@ -501,7 +501,7 @@ export default function AboutPage({ setView, openEnquiryModal, setActiveLabByNam
               </a>
 
               <a
-                href="https://maps.google.com/?q=Bhartiya+Skills+LLP+J-09+Sector+63+Noida+Uttar+Pradesh"
+                href="https://www.google.com/maps/place/Bhartiya+Skills+LLP/@28.6248554,77.3848149,17z/data=!3m1!4b1!4m6!3m5!1s0x390cefeea87dd695:0xd60876bb826ccda7!8m2!3d28.6248507!4d77.3873898!16s%2Fg%2F11kh_rxs3n?hl=en&authuser=0&entry=ttu&g_ep=EgoyMDI2MDcyOS4wIKXMDSoASAFQAw%3D%3D"
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center gap-1.5 bg-[#303033] hover:bg-[#1A1A1C] text-white font-bold font-display text-xs uppercase px-4 py-2 rounded-lg shadow-xs transition-colors"

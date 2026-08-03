@@ -759,14 +759,43 @@ export default function App() {
                     </div>
                   </div>
 
-                  {/* Google Maps Embed Mock */}
-                  <div className="aspect-video w-full rounded-xl bg-[#ECFAF4] border border-[#2CC2A5] overflow-hidden relative shadow-xs flex items-center justify-center text-center p-4">
-                    <div className="space-y-2">
-                      <Map className="h-8 w-8 text-[#33C98C] mx-auto animate-bounce" />
-                      <h4 className="font-bold font-display uppercase text-[#303033] text-xs tracking-tight">Our Address</h4>
-                      <p className="text-[#5B5B5D] text-xs max-w-xs leading-relaxed font-sans font-mono">
-                        Bhartiya Skills LLP, J-09, Sector 63, Noida, Uttar Pradesh
-                      </p>
+                  {/* Google Maps Embed Location */}
+                  <div className="w-full rounded-xl bg-[#ECFAF4] border border-[#2CC2A5] overflow-hidden relative shadow-md flex flex-col items-center justify-center text-center">
+                    <div className="w-full h-64 relative">
+                      <iframe
+                        src="https://maps.google.com/maps?q=28.6248507,77.3873898&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                        width="100%"
+                        height="100%"
+                        className="w-full h-full border-0"
+                        allowFullScreen
+                        loading="lazy"
+                        title="Bhartiya Skills LLP Google Maps Location"
+                      />
+                      <a
+                        href="https://www.google.com/maps/place/Bhartiya+Skills+LLP/@28.6248554,77.3848149,17z/data=!3m1!4b1!4m6!3m5!1s0x390cefeea87dd695:0xd60876bb826ccda7!8m2!3d28.6248507!4d77.3873898!16s%2Fg%2F11kh_rxs3n?hl=en&authuser=0&entry=ttu&g_ep=EgoyMDI2MDcyOS4wIKXMDSoASAFQAw%3D%3D"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="absolute bottom-3 right-3 bg-[#303033] hover:bg-[#1A1A1C] text-white text-xs font-bold font-display uppercase px-3 py-2 rounded-lg shadow-lg flex items-center gap-1.5 transition-all hover:scale-105 z-10"
+                      >
+                        <MapPin className="h-4 w-4 text-[#F8D61D]" />
+                        Open in Google Maps
+                      </a>
+                    </div>
+                    <div className="p-3.5 bg-[#ECFAF4] w-full border-t border-[#2CC2A5]/40 flex flex-col sm:flex-row items-center justify-between gap-2 text-left px-4">
+                      <div>
+                        <h4 className="font-bold font-display uppercase text-[#303033] text-xs tracking-tight">Our Location</h4>
+                        <p className="text-[#5B5B5D] text-xs leading-relaxed font-sans font-medium">
+                          Bhartiya Skills LLP, J-09, Sector 63, Noida, Uttar Pradesh
+                        </p>
+                      </div>
+                      <a
+                        href="https://www.google.com/maps/place/Bhartiya+Skills+LLP/@28.6248554,77.3848149,17z/data=!3m1!4b1!4m6!3m5!1s0x390cefeea87dd695:0xd60876bb826ccda7!8m2!3d28.6248507!4d77.3873898!16s%2Fg%2F11kh_rxs3n?hl=en&authuser=0&entry=ttu&g_ep=EgoyMDI2MDcyOS4wIKXMDSoASAFQAw%3D%3D"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="shrink-0 bg-[#33C98C] hover:bg-[#2AAA76] text-white font-bold font-display text-xs uppercase px-3 py-1.5 rounded-lg shadow-xs transition-colors flex items-center gap-1.5"
+                      >
+                        Get Directions
+                      </a>
                     </div>
                   </div>
                 </div>
