@@ -195,7 +195,9 @@ export default function AboutPage({ setView, openEnquiryModal, setActiveLabByNam
             <div className="aspect-video lg:aspect-square w-full rounded-xl overflow-hidden bg-[#F5F7F6] relative">
               <img
                 src={expertise.image}
-                alt="Vocational Training Centre"
+                alt="Vocational Training Centre Laboratory Facility"
+                loading="lazy"
+                decoding="async"
                 className="h-full w-full object-cover"
                 referrerPolicy="no-referrer"
               />

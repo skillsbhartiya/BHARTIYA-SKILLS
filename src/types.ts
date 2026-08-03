@@ -31,17 +31,6 @@ export interface PortfolioProject {
   image: string;
 }
 
-export interface BlogPost {
-  id: string;
-  title: string;
-  category: string;
-  shortDesc: string;
-  content: string;
-  date: string;
-  readTime: string;
-  image: string;
-}
-
 export interface EnquirySubmission {
   fullName: string;
   organisationName: string;

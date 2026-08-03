@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Phone, Mail, MapPin, Landmark, Check, CheckCircle, Award, Sparkles,
   X, ArrowRight, Search, Filter,
@@ -9,7 +9,7 @@ import {
 import { labSolutions } from "./data/labSolutions";
 import { products } from "./data/products";
 import { portfolioProjects } from "./data/projects";
-import { blogPosts } from "./data/blogs";
+import AuthorisedDealerSection from "./components/AuthorisedDealerSection";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -18,15 +18,57 @@ import LabDetailsModal from "./components/LabDetailsModal";
 import AboutPage from "./components/AboutPage";
 import SpecializedLabs from "./components/SpecializedLabs";
 import TestimonialsSection from "./components/TestimonialsSection";
+import SEOHead from "./components/SEOHead";
+import Breadcrumbs from "./components/Breadcrumbs";
 import { LabSolution } from "./types";
 
 export default function App() {
+  const getInitialView = () => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const v = params.get("view");
+      if (v && ["home", "about", "solutions", "specialized", "industries", "projects", "products", "gallery", "enquiry", "contact", "404"].includes(v)) {
+        return v;
+      }
+    } catch {
+      // ignore
+    }
+    return "home";
+  };
+
   // Navigation & UI States
-  const [currentView, setView] = useState("home");
+  const [currentView, setCurrentViewRaw] = useState(getInitialView);
+
+  const setView = (newView: string) => {
+    setCurrentViewRaw(newView);
+    try {
+      const url = new URL(window.location.href);
+      if (newView === "home") {
+        url.searchParams.delete("view");
+      } else {
+        url.searchParams.set("view", newView);
+      }
+      window.history.pushState({ view: newView }, "", url.toString());
+    } catch {
+      // Ignore in restricted sandboxes
+    }
+  };
+
+  useEffect(() => {
+    const handlePopState = () => {
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const v = params.get("view") || "home";
+        setCurrentViewRaw(v);
+      } catch {
+        // ignore
+      }
+    };
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, []);
   const [activeLab, setActiveLab] = useState<LabSolution | null>(null);
   const [activeProjectFilter, setActiveProjectFilter] = useState("All");
-  const [activeBlogCategory, setActiveBlogCategory] = useState("All");
-  const [selectedBlogId, setSelectedBlogId] = useState<string | null>(null);
   const [productSearch, setProductSearch] = useState("");
   const [activeProductCategory, setActiveProductCategory] = useState("All");
   
@@ -49,9 +91,6 @@ export default function App() {
 
   // Filter Categories for Portfolio
   const projectFilters = ["All", "Medical", "Automotive", "Electrical", "Agriculture", "Computer", "Apparel", "Beautician", "Solar", "Plumbing", "Government Projects", "Training Centres"];
-
-  // Filter Categories for Blog
-  const blogCategories = ["All", "Laboratory Planning", "Skill Development", "Institutional BOQs", "Automotive Training", "Medical Training Equipment"];
 
   // Filter Categories for Products
   const productCategories = ["All", "Medical & Healthcare", "Automotive", "Electrical", "Electronics", "Agriculture", "Computer & Classroom", "Apparel & Garment", "Telecom", "Solar & Renewable", "Plumbing", "Food Processing", "Media & Studio"];
@@ -479,159 +518,6 @@ export default function App() {
                           className="text-[#33C98C] hover:text-[#2AAA76] text-xs font-bold font-display uppercase tracking-wider flex items-center gap-1 cursor-pointer"
                         >
                           <span>Request Case Details</span>
-                          <ArrowRight className="h-3.5 w-3.5" />
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-        );
-
-      case "blog":
-        if (selectedBlogId) {
-          const activePost = blogPosts.find((p) => p.id === selectedBlogId);
-          if (!activePost) {
-            setSelectedBlogId(null);
-            return null;
-          }
-          return (
-            <section className="py-12 bg-white animate-in fade-in duration-200">
-              <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 space-y-8">
-                <button
-                  onClick={() => setSelectedBlogId(null)}
-                  className="inline-flex items-center gap-2 text-xs font-bold font-display uppercase tracking-wider text-[#33C98C] hover:text-[#2AAA76] transition-colors cursor-pointer"
-                >
-                  <span>← Back to Insights</span>
-                </button>
-
-                <div className="space-y-4">
-                  <div className="flex flex-wrap items-center gap-3 text-xs font-mono text-[#5B5B5D]">
-                    <span className="text-[#2CC2A5] font-bold uppercase">{activePost.category}</span>
-                    <span>•</span>
-                    <span>{activePost.date}</span>
-                    <span>•</span>
-                    <span>{activePost.readTime}</span>
-                  </div>
-
-                  <h1 className="text-2xl font-bold font-display tracking-tight uppercase text-[#303033] sm:text-4xl leading-tight">
-                    {activePost.title}
-                  </h1>
-
-                  <p className="text-[#5B5B5D] text-sm leading-relaxed font-sans border-l-4 border-[#33C98C] pl-4 italic bg-[#ECFAF4] py-2 rounded-r-md">
-                    {activePost.shortDesc}
-                  </p>
-                </div>
-
-                <div className="aspect-video w-full rounded-xl overflow-hidden border border-[#DDE8E3] bg-[#F5F7F6]">
-                  <img
-                    src={activePost.image}
-                    alt={activePost.title}
-                    className="h-full w-full object-cover"
-                    referrerPolicy="no-referrer"
-                  />
-                </div>
-
-                <div className="prose max-w-none text-[#5B5B5D] text-sm sm:text-base leading-relaxed space-y-6 font-sans border-t border-[#DDE8E3] pt-8">
-                  {activePost.content.split("\n\n").map((para, idx) => (
-                    <p key={idx}>{para}</p>
-                  ))}
-                </div>
-
-                <div className="border-t border-[#DDE8E3] pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
-                  <div className="text-xs text-[#5B5B5D] font-mono">
-                    Published by Bhartiya Skills LLP Technical Team
-                  </div>
-                  <button
-                    onClick={() => {
-                      setCallbackForm((prev) => ({ ...prev, message: `Consultation regarding: ${activePost.title}` }));
-                      setView("enquiry");
-                      window.scrollTo({ top: 300, behavior: "smooth" });
-                    }}
-                    className="rounded-md bg-[#33C98C] hover:bg-[#2AAA76] text-white font-bold font-display px-5 py-2 text-xs uppercase tracking-wider cursor-pointer shadow-xs"
-                  >
-                    Consult Our Experts On This
-                  </button>
-                </div>
-              </div>
-            </section>
-          );
-        }
-
-        const filteredBlogs = blogPosts.filter((p) => activeBlogCategory === "All" || p.category === activeBlogCategory);
-
-        return (
-          <section className="py-12 bg-[#F5F7F6] animate-in fade-in duration-200">
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-8">
-              <div className="text-center space-y-2">
-                <span className="text-xs font-mono font-bold tracking-widest text-[#2CC2A5] uppercase bg-white px-3 py-1 rounded-full border border-[#2CC2A5]/30 inline-block">
-                  Technical Knowledge Centre
-                </span>
-                <h1 className="text-3xl font-bold font-display tracking-tight uppercase text-[#303033]">
-                  Insights &amp; Industry Standards
-                </h1>
-                <p className="text-[#5B5B5D] text-xs sm:text-sm max-w-xl mx-auto font-sans">
-                  Detailed guidelines on vocational layouts, compliance protocols, BOQ compilations, and advanced technical machinery commissioning.
-                </p>
-              </div>
-
-              {/* Blog Filter Categories */}
-              <div className="flex flex-wrap justify-center gap-1.5 border-b border-[#DDE8E3] pb-6">
-                {blogCategories.map((cat) => (
-                  <button
-                    key={cat}
-                    onClick={() => setActiveBlogCategory(cat)}
-                    className={`px-3.5 py-1.5 rounded-md text-xs font-bold font-display uppercase tracking-wider transition-all cursor-pointer ${
-                      activeBlogCategory === cat
-                        ? "bg-[#33C98C] text-white border border-[#33C98C] shadow-xs"
-                        : "bg-white text-[#5B5B5D] hover:bg-[#ECFAF4] border border-[#DDE8E3]"
-                    }`}
-                  >
-                    {cat}
-                  </button>
-                ))}
-              </div>
-
-              {/* Blogs Listing Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4">
-                {filteredBlogs.map((post) => (
-                  <div
-                    key={post.id}
-                    className="bg-white rounded-xl border border-[#DDE8E3] overflow-hidden shadow-xs flex flex-col justify-between hover:border-[#33C98C] hover:shadow-md transition-colors"
-                  >
-                    <div className="aspect-video w-full bg-[#F5F7F6] relative">
-                      <img
-                        src={post.image}
-                        alt={post.title}
-                        className="h-full w-full object-cover"
-                        referrerPolicy="no-referrer"
-                      />
-                      <div className="absolute top-3 left-3 bg-[#ECFAF4] border border-[#2CC2A5] text-[10px] text-[#2CC2A5] px-2.5 py-0.5 rounded-md font-bold font-display tracking-wider uppercase">
-                        {post.category}
-                      </div>
-                    </div>
-                    <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
-                      <div className="space-y-2">
-                        <div className="flex items-center gap-2 text-[10px] font-mono font-bold text-[#5B5B5D] uppercase">
-                          <span>{post.date}</span>
-                          <span>•</span>
-                          <span>{post.readTime}</span>
-                        </div>
-                        <h4 className="font-bold font-display uppercase text-[#303033] text-base tracking-tight leading-snug line-clamp-2">
-                          {post.title}
-                        </h4>
-                        <p className="text-[#5B5B5D] text-xs sm:text-sm leading-relaxed line-clamp-3 font-sans">
-                          {post.shortDesc}
-                        </p>
-                      </div>
-                      <div className="pt-4 border-t border-[#DDE8E3] flex items-center justify-between">
-                        <button
-                          onClick={() => setSelectedBlogId(post.id)}
-                          className="text-[#33C98C] hover:text-[#2AAA76] text-xs font-bold font-display uppercase tracking-wider flex items-center gap-1 cursor-pointer transition-colors"
-                        >
-                          <span>Read Full Article</span>
                           <ArrowRight className="h-3.5 w-3.5" />
                         </button>
                       </div>
@@ -1397,6 +1283,18 @@ export default function App() {
               </div>
             </section>
 
+            {/* Authorised Dealer & Trusted Brand Partners Section */}
+            <AuthorisedDealerSection
+              onExploreProducts={() => {
+                setView("solutions");
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
+              onRequestQuotation={() => {
+                setView("enquiry");
+                window.scrollTo({ top: 300, behavior: "smooth" });
+              }}
+            />
+
             {/* 10. Featured Projects Portfolio Section */}
             <section className="bg-[#F5F7F6] py-12 border-y border-[#DDE8E3]">
               <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-8">
@@ -1503,7 +1401,7 @@ export default function App() {
             </section>
 
             {/* 14. Frequently Asked Questions */}
-            <section className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 space-y-8">
+            <section className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 space-y-8 pb-12 sm:pb-16">
               <div className="text-center space-y-2">
                 <span className="text-xs font-mono font-bold tracking-widest text-[#2CC2A5] uppercase bg-[#ECFAF4] px-3 py-1 rounded-full border border-[#2CC2A5]/30 inline-block">
                   Resolving Common Queries
@@ -1531,32 +1429,78 @@ export default function App() {
               </div>
             </section>
 
-            {/* 17. Contact CTA & Address Coordinates */}
-            <section className="bg-[#303033] text-white py-12 border-t border-[#DDE8E3]">
-              <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
-                <div className="space-y-2">
-                  <h4 className="text-xs font-mono font-bold uppercase tracking-widest text-[#9EDB45]">Call Support Desk</h4>
-                  <a href="tel:+918860346363" className="text-white font-mono font-bold text-sm sm:text-base leading-none hover:text-[#33C98C] transition-colors">+91 8860346363</a>
-                </div>
-                <div className="space-y-2">
-                  <h4 className="text-xs font-mono font-bold uppercase tracking-widest text-[#9EDB45]">Email Communications</h4>
-                  <a href="mailto:skillsbhartiya@gmail.com" className="text-white font-mono font-bold text-sm sm:text-base leading-none hover:text-[#33C98C] transition-colors">skillsbhartiya@gmail.com</a>
-                </div>
-                <div className="space-y-2">
-                  <h4 className="text-xs font-mono font-bold uppercase tracking-widest text-[#9EDB45]">Our Address</h4>
-                  <p className="text-[#D6D6D6] text-xs leading-tight font-sans">Bhartiya Skills LLP, J-09, Sector 63, Noida, Uttar Pradesh</p>
-                </div>
-              </div>
-            </section>
+
 
           </div>
+        );
+
+      case "404":
+        return (
+          <section className="py-20 bg-white animate-in fade-in duration-200 min-h-[60vh] flex items-center justify-center">
+            <div className="mx-auto max-w-2xl px-4 text-center space-y-6">
+              <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-[#ECFAF4] text-[#33C98C] border border-[#2CC2A5]">
+                <span className="font-display font-black text-3xl">404</span>
+              </div>
+              <h1 className="text-3xl font-bold font-display uppercase tracking-tight text-[#303033]">
+                Page Not Found
+              </h1>
+              <p className="text-[#5B5B5D] text-xs sm:text-sm font-sans max-w-md mx-auto leading-relaxed">
+                The page or laboratory solution you are looking for might have been moved, renamed, or is temporarily unavailable.
+              </p>
+              
+              <div className="max-w-md mx-auto relative pt-2">
+                <input
+                  type="text"
+                  placeholder="Search laboratory solutions or equipment..."
+                  value={productSearch}
+                  onChange={(e) => setProductSearch(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      setView("products");
+                    }
+                  }}
+                  className="w-full rounded-xl border border-[#DDE8E3] bg-[#F5F7F6] pl-10 pr-24 py-3 text-xs text-[#303033] focus:outline-none focus:border-[#33C98C]"
+                />
+                <Search className="absolute left-3.5 top-5 h-4 w-4 text-[#A0A0A0]" />
+                <button
+                  onClick={() => setView("products")}
+                  className="absolute right-2 top-3 rounded-lg bg-[#33C98C] hover:bg-[#2AAA76] text-white font-bold font-display text-xs uppercase px-3.5 py-1.5 transition-colors cursor-pointer"
+                >
+                  Search
+                </button>
+              </div>
+
+              <div className="flex flex-wrap items-center justify-center gap-3 pt-4">
+                <button
+                  onClick={() => setView("home")}
+                  className="rounded-lg bg-[#303033] hover:bg-[#1A1A1C] text-white font-bold font-display text-xs uppercase px-5 py-2.5 transition-all shadow-sm cursor-pointer"
+                >
+                  Return to Homepage
+                </button>
+                <button
+                  onClick={() => setView("solutions")}
+                  className="rounded-lg bg-[#ECFAF4] hover:bg-[#DDE8E3] text-[#303033] font-bold font-display text-xs uppercase px-5 py-2.5 border border-[#DDE8E3] transition-all cursor-pointer"
+                >
+                  Browse Lab Solutions
+                </button>
+              </div>
+            </div>
+          </section>
         );
     }
   };
 
   return (
     <div className="min-h-screen bg-[#FFFFFF] font-sans text-[#5B5B5D] flex flex-col justify-between">
-      
+      {/* Dynamic SEO Head & Schema.org JSON-LD Manager */}
+      <SEOHead
+        currentView={currentView}
+        activeLab={activeLab}
+        activeProjectFilter={activeProjectFilter}
+        activeProductCategory={activeProductCategory}
+        searchQuery={productSearch}
+      />
+
       {/* Sticky Navigation Header */}
       <Header
         currentView={currentView}
@@ -1565,6 +1509,14 @@ export default function App() {
           setView("enquiry");
           window.scrollTo({ top: 300, behavior: "smooth" });
         }}
+      />
+
+      {/* Breadcrumbs Navigation */}
+      <Breadcrumbs
+        currentView={currentView}
+        setView={setView}
+        activeLabName={activeLab ? activeLab.name : null}
+        onClearActiveLab={() => setActiveLab(null)}
       />
 
       {/* Main Viewport Content */}

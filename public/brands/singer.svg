@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 120" width="100%" height="100%">
+  <defs>
+    <linearGradient id="singerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E6E6E6"/>
+      <stop offset="50%" stop-color="#888888"/>
+      <stop offset="100%" stop-color="#E6E6E6"/>
+    </linearGradient>
+  </defs>
+  <!-- Shiny Red Circle emblem with S -->
+  <circle cx="60" cy="60" r="45" fill="url(#singerGrad)" stroke="#B5B5B5" stroke-width="4"/>
+  <circle cx="60" cy="60" r="40" fill="#E20048"/>
+  <text x="60" y="78" font-family="'Times New Roman', Georgia, serif" font-weight="bold" font-size="52" fill="#FFFFFF" text-anchor="middle">S</text>
+  
+  <!-- SINGER Text -->
+  <text x="125" y="82" font-family="'Arial Black', 'Helvetica Neue', sans-serif" font-weight="900" font-size="68" fill="#E20048" letter-spacing="4">SINGER</text>
+  <text x="470" y="45" font-family="sans-serif" font-weight="bold" font-size="16" fill="#E20048">®</text>
+</svg>

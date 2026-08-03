@@ -18,7 +18,6 @@ export default function Header({ currentView, setView, openEnquiryModal }: Heade
     { id: "specialized", label: "Nursing, ATL & ITI Labs" },
     { id: "industries", label: "Industries We Serve" },
     { id: "projects", label: "Projects" },
-    { id: "blog", label: "Blogs" },
     { id: "contact", label: "Contact Us" }
   ];
 

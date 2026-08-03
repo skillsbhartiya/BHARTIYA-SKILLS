@@ -39,7 +39,9 @@ export default function LabDetailsModal({ lab, onClose, onRequestProposal }: Lab
               <div className="aspect-video md:aspect-square rounded-lg border border-[#DDE8E3] overflow-hidden shadow-xs">
                 <img
                   src={lab.image}
-                  alt={lab.name}
+                  alt={`${lab.name} Turnkey Laboratory Setup`}
+                  loading="lazy"
+                  decoding="async"
                   className="h-full w-full object-cover"
                   referrerPolicy="no-referrer"
                 />
