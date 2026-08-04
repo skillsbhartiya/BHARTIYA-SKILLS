@@ -9,8 +9,9 @@ interface FooterProps {
 export default function Footer({ setView, openEnquiryModal }: FooterProps) {
   const currentYear = new Date().getFullYear();
 
-  const handleNavClick = (viewId: string) => {
-    setView(viewId);
+  const handleNavClick = (e: React.MouseEvent, path: string) => {
+    e.preventDefault();
+    setView(path);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
@@ -20,12 +21,13 @@ export default function Footer({ setView, openEnquiryModal }: FooterProps) {
         {/* Brand Column */}
         <div className="space-y-4">
           {/* Logo inside clean white container badge */}
-          <div 
+          <a 
+            href="/"
             className="bg-white p-2.5 rounded-lg border border-[#DDE8E3] inline-block shadow-sm cursor-pointer"
-            onClick={() => handleNavClick("home")}
+            onClick={(e) => handleNavClick(e, "/")}
           >
             <Logo size="md" variant="default" />
-          </div>
+          </a>
 
           <p className="text-xs text-[#D6D6D6] leading-relaxed">
             Bhartiya Skills LLP is a premier Indian turnkey laboratory setup, vocational training infrastructure, and educational equipment provider serving institutions nationwide.
@@ -49,44 +51,44 @@ export default function Footer({ setView, openEnquiryModal }: FooterProps) {
           </h4>
           <ul className="space-y-2.5 text-xs font-bold uppercase tracking-wide font-display">
             <li>
-              <button onClick={() => handleNavClick("home")} className="hover:text-[#33C98C] text-white hover:translate-x-1 transition-all text-left cursor-pointer">
+              <a href="/" onClick={(e) => handleNavClick(e, "/")} className="hover:text-[#33C98C] text-white hover:translate-x-1 transition-all text-left cursor-pointer inline-block">
                 Home Overview
-              </button>
+              </a>
             </li>
             <li>
-              <button onClick={() => handleNavClick("about")} className="hover:text-[#33C98C] text-white hover:translate-x-1 transition-all text-left cursor-pointer">
+              <a href="/about" onClick={(e) => handleNavClick(e, "/about")} className="hover:text-[#33C98C] text-white hover:translate-x-1 transition-all text-left cursor-pointer inline-block">
                 About Our Company
-              </button>
+              </a>
             </li>
             <li>
-              <button onClick={() => handleNavClick("solutions")} className="hover:text-[#33C98C] text-white hover:translate-x-1 transition-all text-left cursor-pointer">
+              <a href="/solutions" onClick={(e) => handleNavClick(e, "/solutions")} className="hover:text-[#33C98C] text-white hover:translate-x-1 transition-all text-left cursor-pointer inline-block">
                 Laboratory Setup Solutions
-              </button>
+              </a>
             </li>
             <li>
-              <button onClick={() => handleNavClick("specialized")} className="hover:text-[#33C98C] text-white hover:translate-x-1 transition-all text-left cursor-pointer font-bold text-[#9EDB45]">
+              <a href="/specialized" onClick={(e) => handleNavClick(e, "/specialized")} className="hover:text-[#33C98C] text-white hover:translate-x-1 transition-all text-left cursor-pointer inline-block font-bold text-[#9EDB45]">
                 Nursing, ATL &amp; ITI Trade Labs
-              </button>
+              </a>
             </li>
             <li>
-              <button onClick={() => handleNavClick("industries")} className="hover:text-[#33C98C] text-white hover:translate-x-1 transition-all text-left cursor-pointer">
+              <a href="/industries" onClick={(e) => handleNavClick(e, "/industries")} className="hover:text-[#33C98C] text-white hover:translate-x-1 transition-all text-left cursor-pointer inline-block">
                 Industries We Serve
-              </button>
+              </a>
             </li>
             <li>
-              <button onClick={() => handleNavClick("projects")} className="hover:text-[#33C98C] text-white hover:translate-x-1 transition-all text-left cursor-pointer">
+              <a href="/projects" onClick={(e) => handleNavClick(e, "/projects")} className="hover:text-[#33C98C] text-white hover:translate-x-1 transition-all text-left cursor-pointer inline-block">
                 Projects
-              </button>
+              </a>
             </li>
             <li>
-              <button onClick={() => handleNavClick("gallery")} className="hover:text-[#33C98C] text-white hover:translate-x-1 transition-all text-left cursor-pointer">
+              <a href="/gallery" onClick={(e) => handleNavClick(e, "/gallery")} className="hover:text-[#33C98C] text-white hover:translate-x-1 transition-all text-left cursor-pointer inline-block">
                 Gallery
-              </button>
+              </a>
             </li>
             <li>
-              <button onClick={() => handleNavClick("contact")} className="hover:text-[#33C98C] text-white hover:translate-x-1 transition-all text-left cursor-pointer">
+              <a href="/contact" onClick={(e) => handleNavClick(e, "/contact")} className="hover:text-[#33C98C] text-white hover:translate-x-1 transition-all text-left cursor-pointer inline-block">
                 Contact &amp; Support Details
-              </button>
+              </a>
             </li>
           </ul>
         </div>

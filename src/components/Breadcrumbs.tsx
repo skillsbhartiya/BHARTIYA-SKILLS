@@ -34,13 +34,14 @@ export default function Breadcrumbs({
   const handleHomeClick = (e: React.MouseEvent) => {
     e.preventDefault();
     if (onClearActiveLab) onClearActiveLab();
-    setView("home");
+    setView("/");
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const handleViewClick = (e: React.MouseEvent) => {
     e.preventDefault();
     if (onClearActiveLab) onClearActiveLab();
+    setView(`/${currentView}`);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 

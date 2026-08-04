@@ -12,17 +12,18 @@ export default function Header({ currentView, setView, openEnquiryModal }: Heade
   const [isOpen, setIsOpen] = useState(false);
 
   const menuItems = [
-    { id: "home", label: "Home" },
-    { id: "about", label: "About Us" },
-    { id: "solutions", label: "Lab Solutions" },
-    { id: "specialized", label: "Nursing, ATL & ITI Labs" },
-    { id: "industries", label: "Industries We Serve" },
-    { id: "projects", label: "Projects" },
-    { id: "contact", label: "Contact Us" }
+    { id: "home", label: "Home", path: "/" },
+    { id: "about", label: "About Us", path: "/about" },
+    { id: "solutions", label: "Lab Solutions", path: "/solutions" },
+    { id: "specialized", label: "Nursing, ATL & ITI Labs", path: "/specialized" },
+    { id: "industries", label: "Industries We Serve", path: "/industries" },
+    { id: "projects", label: "Projects", path: "/projects" },
+    { id: "contact", label: "Contact Us", path: "/contact" }
   ];
 
-  const handleNavClick = (viewId: string) => {
-    setView(viewId);
+  const handleNavClick = (e: React.MouseEvent, path: string) => {
+    e.preventDefault();
+    setView(path);
     setIsOpen(false);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -39,19 +40,21 @@ export default function Header({ currentView, setView, openEnquiryModal }: Heade
 
       <div className="mx-auto flex max-w-7xl h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Brand Logo - Official Logo Component */}
-        <div 
+        <a 
+          href="/" 
           className="flex items-center cursor-pointer py-1" 
-          onClick={() => handleNavClick("home")}
+          onClick={(e) => handleNavClick(e, "/")}
         >
           <Logo size="md" variant="default" />
-        </div>
+        </a>
 
         {/* Desktop Navigation Links */}
         <nav className="hidden xl:flex items-center gap-1">
           {menuItems.map((item) => (
-            <button
+            <a
               key={item.id}
-              onClick={() => handleNavClick(item.id)}
+              href={item.path}
+              onClick={(e) => handleNavClick(e, item.path)}
               className={`px-2.5 py-1.5 rounded-md text-xs font-bold tracking-wide uppercase transition-all duration-200 font-display cursor-pointer ${
                 currentView === item.id
                   ? "bg-[#ECFAF4] text-[#33C98C] border border-[#33C98C]"
@@ -59,7 +62,7 @@ export default function Header({ currentView, setView, openEnquiryModal }: Heade
               }`}
             >
               {item.label}
-            </button>
+            </a>
           ))}
         </nav>
 
@@ -89,9 +92,10 @@ export default function Header({ currentView, setView, openEnquiryModal }: Heade
         <div className="xl:hidden border-t border-[#DDE8E3] bg-white shadow-xl animate-in fade-in slide-in-from-top-4 duration-200">
           <div className="space-y-1 px-4 py-3">
             {menuItems.map((item) => (
-              <button
+              <a
                 key={item.id}
-                onClick={() => handleNavClick(item.id)}
+                href={item.path}
+                onClick={(e) => handleNavClick(e, item.path)}
                 className={`w-full text-left px-3 py-2.5 rounded-md text-xs font-bold uppercase tracking-wider font-display flex items-center justify-between ${
                   currentView === item.id
                     ? "bg-[#ECFAF4] text-[#33C98C] font-black border border-[#33C98C]"
@@ -102,7 +106,7 @@ export default function Header({ currentView, setView, openEnquiryModal }: Heade
                   {item.label}
                 </span>
                 {currentView === item.id && <div className="h-2 w-2 rounded-full bg-[#33C98C]" />}
-              </button>
+              </a>
             ))}
             <div className="pt-3 border-t border-[#DDE8E3] mt-2">
               <button

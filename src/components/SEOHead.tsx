@@ -110,7 +110,7 @@ export default function SEOHead({
     if (activeLab) {
       pageTitle = `${activeLab.name} Setup | Turnkey Laboratory Solutions | Bhartiya Skills LLP`;
       pageDesc = `Turnkey ${activeLab.name} setup by Bhartiya Skills LLP. ${activeLab.shortDesc} Includes equipment, layout, installation & training across India.`;
-      canonicalUrl = `${BASE_URL}/solutions#${activeLab.id}`;
+      canonicalUrl = `${BASE_URL}/solutions/${activeLab.id}`;
     } else if (currentView === "products" && activeProductCategory && activeProductCategory !== "All") {
       pageTitle = `${activeProductCategory} Equipment Catalog | Bhartiya Skills LLP`;
       pageDesc = `Browse ${activeProductCategory} training tools, machinery, and equipment supplied by Bhartiya Skills LLP for ITIs, polytechnics, and colleges in India.`;
