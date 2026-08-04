@@ -1,9 +1,10 @@
 import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { labSolutions } from "../data/labSolutions";
 import { LabSolution } from "../types";
 
 interface SEOHeadProps {
-  currentView: string;
+  currentView?: string;
   activeLab?: LabSolution | null;
   activeProjectFilter?: string;
   activeProductCategory?: string;
@@ -94,16 +95,22 @@ const MAIN_FAQS = [
 ];
 
 export default function SEOHead({
-  currentView,
+  currentView: customView,
   activeLab,
   activeProjectFilter,
   activeProductCategory,
   searchQuery,
 }: SEOHeadProps) {
+  const location = useLocation();
+  const pathView = location.pathname.split("/")[1]?.toLowerCase();
+  const viewKey = customView || pathView || "home";
+
   useEffect(() => {
     // 1. Determine SEO metadata for current state
-    let seo = VIEW_SEO_MAP[currentView] || VIEW_SEO_MAP["home"];
-    let canonicalUrl = `${BASE_URL}${seo.path}`;
+    let seo = VIEW_SEO_MAP[viewKey] || VIEW_SEO_MAP["home"];
+    let cleanPathName = location.pathname;
+    if (cleanPathName === "") cleanPathName = "/";
+    let canonicalUrl = `${BASE_URL}${cleanPathName}`;
     let pageTitle = seo.title;
     let pageDesc = seo.description;
 
@@ -111,10 +118,10 @@ export default function SEOHead({
       pageTitle = `${activeLab.name} Setup | Turnkey Laboratory Solutions | Bhartiya Skills LLP`;
       pageDesc = `Turnkey ${activeLab.name} setup by Bhartiya Skills LLP. ${activeLab.shortDesc} Includes equipment, layout, installation & training across India.`;
       canonicalUrl = `${BASE_URL}/solutions/${activeLab.id}`;
-    } else if (currentView === "products" && activeProductCategory && activeProductCategory !== "All") {
+    } else if (viewKey === "products" && activeProductCategory && activeProductCategory !== "All") {
       pageTitle = `${activeProductCategory} Equipment Catalog | Bhartiya Skills LLP`;
       pageDesc = `Browse ${activeProductCategory} training tools, machinery, and equipment supplied by Bhartiya Skills LLP for ITIs, polytechnics, and colleges in India.`;
-    } else if (currentView === "projects" && activeProjectFilter && activeProjectFilter !== "All") {
+    } else if (viewKey === "projects" && activeProjectFilter && activeProjectFilter !== "All") {
       pageTitle = `${activeProjectFilter} Laboratory Projects | Bhartiya Skills LLP Portfolio`;
       pageDesc = `Completed ${activeProjectFilter} lab setups and government institutional modernization projects executed by Bhartiya Skills LLP.`;
     }
@@ -247,7 +254,7 @@ export default function SEOHead({
       }
     ];
 
-    if (currentView !== "home") {
+    if (viewKey !== "home") {
       breadcrumbItems.push({
         "@type": "ListItem",
         "position": 2,
@@ -326,7 +333,7 @@ export default function SEOHead({
       if (existingService) existingService.remove();
     }
 
-  }, [currentView, activeLab, activeProjectFilter, activeProductCategory, searchQuery]);
+  }, [location.pathname, viewKey, activeLab, activeProjectFilter, activeProductCategory, searchQuery]);
 
   return null;
 }

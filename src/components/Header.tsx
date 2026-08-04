@@ -1,15 +1,18 @@
 import { useState } from "react";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X, Landmark } from "lucide-react";
 import { Logo } from "./Logo";
 
 interface HeaderProps {
-  currentView: string;
-  setView: (view: string) => void;
+  currentView?: string;
+  setView?: (view: string) => void;
   openEnquiryModal: () => void;
 }
 
-export default function Header({ currentView, setView, openEnquiryModal }: HeaderProps) {
+export default function Header({ openEnquiryModal }: HeaderProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const menuItems = [
     { id: "home", label: "Home", path: "/" },
@@ -21,9 +24,14 @@ export default function Header({ currentView, setView, openEnquiryModal }: Heade
     { id: "contact", label: "Contact Us", path: "/contact" }
   ];
 
-  const handleNavClick = (e: React.MouseEvent, path: string) => {
-    e.preventDefault();
-    setView(path);
+  const isLinkActive = (path: string) => {
+    if (path === "/") {
+      return location.pathname === "/";
+    }
+    return location.pathname.startsWith(path);
+  };
+
+  const handleNavClick = () => {
     setIsOpen(false);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -40,36 +48,42 @@ export default function Header({ currentView, setView, openEnquiryModal }: Heade
 
       <div className="mx-auto flex max-w-7xl h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Brand Logo - Official Logo Component */}
-        <a 
-          href="/" 
+        <Link 
+          to="/" 
           className="flex items-center cursor-pointer py-1" 
-          onClick={(e) => handleNavClick(e, "/")}
+          onClick={handleNavClick}
         >
           <Logo size="md" variant="default" />
-        </a>
+        </Link>
 
         {/* Desktop Navigation Links */}
         <nav className="hidden xl:flex items-center gap-1">
-          {menuItems.map((item) => (
-            <a
-              key={item.id}
-              href={item.path}
-              onClick={(e) => handleNavClick(e, item.path)}
-              className={`px-2.5 py-1.5 rounded-md text-xs font-bold tracking-wide uppercase transition-all duration-200 font-display cursor-pointer ${
-                currentView === item.id
-                  ? "bg-[#ECFAF4] text-[#33C98C] border border-[#33C98C]"
-                  : "text-[#4B4B4D] hover:text-[#33C98C] hover:bg-[#F5F7F6]"
-              }`}
-            >
-              {item.label}
-            </a>
-          ))}
+          {menuItems.map((item) => {
+            const active = isLinkActive(item.path);
+            return (
+              <NavLink
+                key={item.id}
+                to={item.path}
+                onClick={handleNavClick}
+                className={`px-2.5 py-1.5 rounded-md text-xs font-bold tracking-wide uppercase transition-all duration-200 font-display cursor-pointer ${
+                  active
+                    ? "bg-[#ECFAF4] text-[#33C98C] border border-[#33C98C]"
+                    : "text-[#4B4B4D] hover:text-[#33C98C] hover:bg-[#F5F7F6]"
+                }`}
+              >
+                {item.label}
+              </NavLink>
+            );
+          })}
         </nav>
 
         {/* CTA Buttons */}
         <div className="hidden md:flex items-center gap-2.5">
           <button
-            onClick={openEnquiryModal}
+            onClick={() => {
+              navigate("/enquiry");
+              window.scrollTo({ top: 300, behavior: "smooth" });
+            }}
             className="rounded-md bg-[#33C98C] hover:bg-[#2AAA76] px-4 py-2 text-xs font-bold text-white transition-all shadow-md font-display uppercase tracking-wider cursor-pointer"
           >
             Request an Enquiry Form
@@ -91,28 +105,32 @@ export default function Header({ currentView, setView, openEnquiryModal }: Heade
       {isOpen && (
         <div className="xl:hidden border-t border-[#DDE8E3] bg-white shadow-xl animate-in fade-in slide-in-from-top-4 duration-200">
           <div className="space-y-1 px-4 py-3">
-            {menuItems.map((item) => (
-              <a
-                key={item.id}
-                href={item.path}
-                onClick={(e) => handleNavClick(e, item.path)}
-                className={`w-full text-left px-3 py-2.5 rounded-md text-xs font-bold uppercase tracking-wider font-display flex items-center justify-between ${
-                  currentView === item.id
-                    ? "bg-[#ECFAF4] text-[#33C98C] font-black border border-[#33C98C]"
-                    : "text-[#4B4B4D] hover:bg-[#F5F7F6] hover:text-[#33C98C]"
-                }`}
-              >
-                <span className="flex items-center gap-2">
-                  {item.label}
-                </span>
-                {currentView === item.id && <div className="h-2 w-2 rounded-full bg-[#33C98C]" />}
-              </a>
-            ))}
+            {menuItems.map((item) => {
+              const active = isLinkActive(item.path);
+              return (
+                <NavLink
+                  key={item.id}
+                  to={item.path}
+                  onClick={handleNavClick}
+                  className={`w-full text-left px-3 py-2.5 rounded-md text-xs font-bold uppercase tracking-wider font-display flex items-center justify-between ${
+                    active
+                      ? "bg-[#ECFAF4] text-[#33C98C] font-black border border-[#33C98C]"
+                      : "text-[#4B4B4D] hover:bg-[#F5F7F6] hover:text-[#33C98C]"
+                  }`}
+                >
+                  <span className="flex items-center gap-2">
+                    {item.label}
+                  </span>
+                  {active && <div className="h-2 w-2 rounded-full bg-[#33C98C]" />}
+                </NavLink>
+              );
+            })}
             <div className="pt-3 border-t border-[#DDE8E3] mt-2">
               <button
                 onClick={() => {
                   setIsOpen(false);
-                  openEnquiryModal();
+                  navigate("/enquiry");
+                  window.scrollTo({ top: 300, behavior: "smooth" });
                 }}
                 className="w-full rounded-md bg-[#33C98C] px-3 py-2.5 text-xs font-bold text-white shadow-md text-center font-display uppercase tracking-wider cursor-pointer"
               >

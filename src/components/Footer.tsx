@@ -1,17 +1,16 @@
+import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin, Award, ShieldAlert } from "lucide-react";
 import { Logo } from "./Logo";
 
 interface FooterProps {
-  setView: (view: string) => void;
-  openEnquiryModal: () => void;
+  setView?: (view: string) => void;
+  openEnquiryModal?: () => void;
 }
 
-export default function Footer({ setView, openEnquiryModal }: FooterProps) {
+export default function Footer({}: FooterProps) {
   const currentYear = new Date().getFullYear();
 
-  const handleNavClick = (e: React.MouseEvent, path: string) => {
-    e.preventDefault();
-    setView(path);
+  const handleNavClick = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
@@ -21,13 +20,13 @@ export default function Footer({ setView, openEnquiryModal }: FooterProps) {
         {/* Brand Column */}
         <div className="space-y-4">
           {/* Logo inside clean white container badge */}
-          <a 
-            href="/"
+          <Link 
+            to="/"
             className="bg-white p-2.5 rounded-lg border border-[#DDE8E3] inline-block shadow-sm cursor-pointer"
-            onClick={(e) => handleNavClick(e, "/")}
+            onClick={handleNavClick}
           >
             <Logo size="md" variant="default" />
-          </a>
+          </Link>
 
           <p className="text-xs text-[#D6D6D6] leading-relaxed">
             Bhartiya Skills LLP is a premier Indian turnkey laboratory setup, vocational training infrastructure, and educational equipment provider serving institutions nationwide.
@@ -51,44 +50,44 @@ export default function Footer({ setView, openEnquiryModal }: FooterProps) {
           </h4>
           <ul className="space-y-2.5 text-xs font-bold uppercase tracking-wide font-display">
             <li>
-              <a href="/" onClick={(e) => handleNavClick(e, "/")} className="hover:text-[#33C98C] text-white hover:translate-x-1 transition-all text-left cursor-pointer inline-block">
+              <Link to="/" onClick={handleNavClick} className="hover:text-[#33C98C] text-white hover:translate-x-1 transition-all text-left cursor-pointer inline-block">
                 Home Overview
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/about" onClick={(e) => handleNavClick(e, "/about")} className="hover:text-[#33C98C] text-white hover:translate-x-1 transition-all text-left cursor-pointer inline-block">
+              <Link to="/about" onClick={handleNavClick} className="hover:text-[#33C98C] text-white hover:translate-x-1 transition-all text-left cursor-pointer inline-block">
                 About Our Company
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/solutions" onClick={(e) => handleNavClick(e, "/solutions")} className="hover:text-[#33C98C] text-white hover:translate-x-1 transition-all text-left cursor-pointer inline-block">
+              <Link to="/solutions" onClick={handleNavClick} className="hover:text-[#33C98C] text-white hover:translate-x-1 transition-all text-left cursor-pointer inline-block">
                 Laboratory Setup Solutions
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/specialized" onClick={(e) => handleNavClick(e, "/specialized")} className="hover:text-[#33C98C] text-white hover:translate-x-1 transition-all text-left cursor-pointer inline-block font-bold text-[#9EDB45]">
+              <Link to="/specialized" onClick={handleNavClick} className="hover:text-[#33C98C] text-white hover:translate-x-1 transition-all text-left cursor-pointer inline-block font-bold text-[#9EDB45]">
                 Nursing, ATL &amp; ITI Trade Labs
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/industries" onClick={(e) => handleNavClick(e, "/industries")} className="hover:text-[#33C98C] text-white hover:translate-x-1 transition-all text-left cursor-pointer inline-block">
+              <Link to="/industries" onClick={handleNavClick} className="hover:text-[#33C98C] text-white hover:translate-x-1 transition-all text-left cursor-pointer inline-block">
                 Industries We Serve
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/projects" onClick={(e) => handleNavClick(e, "/projects")} className="hover:text-[#33C98C] text-white hover:translate-x-1 transition-all text-left cursor-pointer inline-block">
+              <Link to="/projects" onClick={handleNavClick} className="hover:text-[#33C98C] text-white hover:translate-x-1 transition-all text-left cursor-pointer inline-block">
                 Projects
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/gallery" onClick={(e) => handleNavClick(e, "/gallery")} className="hover:text-[#33C98C] text-white hover:translate-x-1 transition-all text-left cursor-pointer inline-block">
+              <Link to="/gallery" onClick={handleNavClick} className="hover:text-[#33C98C] text-white hover:translate-x-1 transition-all text-left cursor-pointer inline-block">
                 Gallery
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/contact" onClick={(e) => handleNavClick(e, "/contact")} className="hover:text-[#33C98C] text-white hover:translate-x-1 transition-all text-left cursor-pointer inline-block">
+              <Link to="/contact" onClick={handleNavClick} className="hover:text-[#33C98C] text-white hover:translate-x-1 transition-all text-left cursor-pointer inline-block">
                 Contact &amp; Support Details
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
