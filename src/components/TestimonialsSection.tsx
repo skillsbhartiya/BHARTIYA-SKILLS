@@ -140,7 +140,7 @@ export default function TestimonialsSection() {
         {/* Header */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-[#2CC2A5]/30 pb-6">
           <div className="text-center sm:text-left space-y-1.5">
-            <span className="text-xs font-mono font-bold tracking-widest text-[#2CC2A5] uppercase bg-white px-3.5 py-1 rounded-full border border-[#2CC2A5]/30 inline-block shadow-xs">
+            <span className="text-xs font-sans font-semibold tracking-wide text-[#2CC2A5] uppercase bg-white px-3.5 py-1 rounded-full border border-[#2CC2A5]/30 inline-block shadow-xs">
               Institutional Feedback
             </span>
             <h2 className="text-2xl font-bold font-display tracking-tight uppercase text-[#303033] sm:text-3xl">
@@ -171,7 +171,7 @@ export default function TestimonialsSection() {
               <ChevronLeft className="h-5 w-5" />
             </button>
 
-            <span className="text-xs font-mono font-bold text-[#303033] px-1">
+            <span className="text-xs font-sans font-semibold text-[#303033] px-1">
               {currentIndex + 1} / {testimonialsData.length}
             </span>
 
@@ -205,10 +205,10 @@ export default function TestimonialsSection() {
                   
                   {/* Category & Verified Badge */}
                   <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#F5F7F6] pb-4">
-                    <span className="text-[11px] font-mono font-bold text-[#2CC2A5] uppercase bg-[#ECFAF4] px-3 py-1 rounded-md border border-[#2CC2A5]/20">
+                    <span className="text-[11px] font-sans font-semibold text-[#2CC2A5] uppercase bg-[#ECFAF4] px-3 py-1 rounded-md border border-[#2CC2A5]/20">
                       {item.category}
                     </span>
-                    <div className="flex items-center gap-1.5 text-[#33C98C] text-[11px] font-bold font-mono uppercase">
+                    <div className="flex items-center gap-1.5 text-[#33C98C] text-[11px] font-semibold font-sans uppercase">
                       <CheckCircle2 className="h-4 w-4" />
                       <span>Verified Procurement</span>
                     </div>
@@ -235,7 +235,7 @@ export default function TestimonialsSection() {
                         <p className="text-[#33C98C] font-semibold text-xs mt-0.5">
                           {item.role}
                         </p>
-                        <p className="text-[#5B5B5D] text-[11px] uppercase font-mono mt-0.5">
+                        <p className="text-[#5B5B5D] text-[11px] uppercase font-sans font-medium mt-0.5">
                           {item.institution}, {item.location}
                         </p>
                       </div>
@@ -246,7 +246,7 @@ export default function TestimonialsSection() {
                       {[...Array(item.rating)].map((_, i) => (
                         <Star key={i} className="h-4 w-4 fill-[#FFB800] text-[#FFB800]" />
                       ))}
-                      <span className="text-xs font-mono font-bold text-[#303033] ml-1">5.0</span>
+                      <span className="text-xs font-sans font-bold text-[#303033] ml-1">5.0</span>
                     </div>
                   </div>
 
@@ -274,7 +274,7 @@ export default function TestimonialsSection() {
 
         {/* Extra Ticker Marquee Preview Bar below */}
         <div className="pt-4 border-t border-[#2CC2A5]/20 overflow-hidden">
-          <div className="flex items-center gap-2 mb-3 justify-center text-xs font-mono font-bold uppercase text-[#5B5B5D]">
+          <div className="flex items-center gap-2 mb-3 justify-center text-xs font-sans font-semibold uppercase text-[#5B5B5D]">
             <span>Recent Institutional Supply Locations</span>
           </div>
           <div className="relative w-full overflow-hidden whitespace-nowrap mask-gradient">
@@ -287,7 +287,7 @@ export default function TestimonialsSection() {
                 >
                   <span className="h-2 w-2 rounded-full bg-[#33C98C]" />
                   <span className="font-bold font-display uppercase text-[11px]">{t.institution}</span>
-                  <span className="text-[#5B5B5D] text-[10px] font-mono">({t.location})</span>
+                  <span className="text-[#5B5B5D] text-[10px] font-sans">({t.location})</span>
                 </div>
               ))}
             </div>

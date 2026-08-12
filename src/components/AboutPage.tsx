@@ -81,7 +81,7 @@ export default function AboutPage({ setView, openEnquiryModal, setActiveLabByNam
         <div className="absolute -top-12 -right-12 h-80 w-80 bg-[#33C98C]/15 rounded-full blur-3xl pointer-events-none" />
 
         <div className="mx-auto max-w-7xl relative z-10 space-y-4 text-center sm:text-left">
-          <div className="inline-flex items-center gap-2 rounded-full bg-[#ECFAF4]/10 border border-[#33C98C]/30 px-3.5 py-1 text-xs font-mono font-bold text-[#9EDB45] tracking-widest uppercase backdrop-blur-xs">
+          <div className="inline-flex items-center gap-2 rounded-full bg-[#ECFAF4]/10 border border-[#33C98C]/30 px-3.5 py-1 text-xs font-sans font-semibold text-[#9EDB45] tracking-wide uppercase backdrop-blur-xs">
             <Sparkles className="h-3.5 w-3.5 text-[#F8D61D]" />
             <span>Turnkey Skill Infrastructure Partner</span>
           </div>
@@ -99,7 +99,7 @@ export default function AboutPage({ setView, openEnquiryModal, setActiveLabByNam
           </p>
 
           {/* Quick Breadcrumb/SEO metadata */}
-          <div className="pt-4 flex flex-wrap items-center justify-center sm:justify-start gap-3 text-[11px] font-mono text-[#A0A0A0] uppercase">
+          <div className="pt-4 flex flex-wrap items-center justify-center sm:justify-start gap-3 text-[11px] font-sans text-[#A0A0A0] uppercase">
             <span>Home</span>
             <span>&bull;</span>
             <span className="text-[#33C98C] font-bold">About Us</span>
@@ -116,7 +116,7 @@ export default function AboutPage({ setView, openEnquiryModal, setActiveLabByNam
             ========================================================================= */}
         <section id="company-introduction" className="bg-white rounded-2xl border border-[#DDE8E3] p-6 sm:p-10 shadow-sm space-y-6">
           <div className="border-l-4 border-[#33C98C] pl-4 space-y-1">
-            <span className="text-xs font-mono font-bold text-[#2CC2A5] uppercase tracking-wider">Official Profile</span>
+            <span className="text-xs font-sans font-semibold text-[#2CC2A5] uppercase tracking-wide">Official Profile</span>
             <h2 className="text-2xl sm:text-3xl font-bold font-display uppercase tracking-tight text-[#303033]">
               Who We Are
             </h2>
@@ -171,7 +171,7 @@ export default function AboutPage({ setView, openEnquiryModal, setActiveLabByNam
         <section id="our-expertise" className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-7 bg-white rounded-2xl border border-[#DDE8E3] p-6 sm:p-8 shadow-sm space-y-6">
             <div className="border-l-4 border-[#33C98C] pl-4 space-y-1">
-              <span className="text-xs font-mono font-bold text-[#2CC2A5] uppercase tracking-wider">Target Beneficiaries</span>
+              <span className="text-xs font-sans font-semibold text-[#2CC2A5] uppercase tracking-wide">Target Beneficiaries</span>
               <h2 className="text-2xl sm:text-3xl font-bold font-display uppercase tracking-tight text-[#303033]">
                 {expertise.title}
               </h2>
@@ -203,7 +203,7 @@ export default function AboutPage({ setView, openEnquiryModal, setActiveLabByNam
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#303033]/80 via-transparent to-transparent p-4 flex items-end">
                 <div className="text-white space-y-1">
-                  <span className="text-[10px] font-mono uppercase font-bold text-[#9EDB45] tracking-wider">Institutional Standard</span>
+                  <span className="text-[10px] font-sans uppercase font-semibold text-[#9EDB45] tracking-wide">Institutional Standard</span>
                   <h3 className="text-xs sm:text-sm font-bold uppercase font-display leading-tight">
                     Modern Technical &amp; Vocational Training Environment
                   </h3>
@@ -222,7 +222,7 @@ export default function AboutPage({ setView, openEnquiryModal, setActiveLabByNam
               <Layers className="h-5 w-5" />
             </div>
             <div>
-              <span className="text-xs font-mono font-bold text-[#2CC2A5] uppercase tracking-wider">Comprehensive Execution</span>
+              <span className="text-xs font-sans font-semibold text-[#2CC2A5] uppercase tracking-wide">Comprehensive Execution</span>
               <h2 className="text-xl sm:text-2xl font-bold font-display uppercase tracking-tight text-[#303033]">
                 Turnkey Laboratory &amp; Training Centre Setup
               </h2>
@@ -239,7 +239,7 @@ export default function AboutPage({ setView, openEnquiryModal, setActiveLabByNam
             ========================================================================= */}
         <section id="our-services" className="space-y-6">
           <div className="text-center space-y-2">
-            <span className="text-xs font-mono font-bold tracking-widest text-[#2CC2A5] uppercase bg-white px-3 py-1 rounded-full border border-[#2CC2A5]/30 inline-block">
+            <span className="text-xs font-sans font-semibold tracking-wide text-[#2CC2A5] uppercase bg-white px-3 py-1 rounded-full border border-[#2CC2A5]/30 inline-block">
               End-To-End Capabilities
             </span>
             <h2 className="text-2xl sm:text-3xl font-bold font-display uppercase tracking-tight text-[#303033]">
@@ -257,7 +257,7 @@ export default function AboutPage({ setView, openEnquiryModal, setActiveLabByNam
                 className="bg-white rounded-xl border border-[#DDE8E3] p-5 shadow-xs hover:border-[#33C98C] hover:bg-[#ECFAF4] transition-all duration-200 flex flex-col justify-between space-y-3"
               >
                 <div className="space-y-2">
-                  <div className="h-8 w-8 rounded-lg bg-[#EAF9F7] border border-[#2CC2A5] text-[#33C98C] font-mono text-xs font-bold flex items-center justify-center">
+                  <div className="h-8 w-8 rounded-lg bg-[#EAF9F7] border border-[#2CC2A5] text-[#33C98C] font-sans text-xs font-bold flex items-center justify-center">
                     {String(service.id).padStart(2, "0")}
                   </div>
                   <h3 className="font-bold font-display uppercase text-xs sm:text-sm text-[#303033] leading-tight">
@@ -278,7 +278,7 @@ export default function AboutPage({ setView, openEnquiryModal, setActiveLabByNam
         <section id="industry-solutions" className="bg-white rounded-2xl border border-[#DDE8E3] p-6 sm:p-8 shadow-sm space-y-8">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 border-b border-[#DDE8E3] pb-4">
             <div className="border-l-4 border-[#33C98C] pl-4 space-y-1">
-              <span className="text-xs font-mono font-bold text-[#2CC2A5] uppercase tracking-wider">Institutional Portfolios</span>
+              <span className="text-xs font-sans font-semibold text-[#2CC2A5] uppercase tracking-wide">Institutional Portfolios</span>
               <h2 className="text-2xl sm:text-3xl font-bold font-display uppercase tracking-tight text-[#303033]">
                 Technical and Vocational Laboratory Solutions
               </h2>
@@ -299,7 +299,7 @@ export default function AboutPage({ setView, openEnquiryModal, setActiveLabByNam
                 className="border border-[#DDE8E3] bg-[#F5F7F6] rounded-xl p-4 space-y-3 flex flex-col justify-between hover:border-[#33C98C] hover:bg-[#ECFAF4] transition-all"
               >
                 <div className="space-y-1.5">
-                  <div className="text-[10px] font-mono font-bold text-[#2CC2A5] uppercase tracking-wider">
+                  <div className="text-[10px] font-sans font-semibold text-[#2CC2A5] uppercase tracking-wide">
                     Laboratory Category
                   </div>
                   <h3 className="font-bold font-display uppercase text-xs sm:text-sm text-[#303033] leading-snug">
@@ -336,7 +336,7 @@ export default function AboutPage({ setView, openEnquiryModal, setActiveLabByNam
         <section id="experience-and-reach" className="space-y-6">
           <div className="bg-[#303033] text-white rounded-2xl p-6 sm:p-10 shadow-xl space-y-6">
             <div className="border-b border-[#4B4B4D] pb-4">
-              <span className="text-xs font-mono font-bold text-[#9EDB45] uppercase tracking-widest">Track Record &amp; Outreach</span>
+              <span className="text-xs font-sans font-semibold text-[#9EDB45] uppercase tracking-wide">Track Record &amp; Outreach</span>
               <h2 className="text-2xl sm:text-3xl font-bold font-display uppercase tracking-tight text-white mt-1">
                 {experienceAndReach.title}
               </h2>
@@ -350,7 +350,7 @@ export default function AboutPage({ setView, openEnquiryModal, setActiveLabByNam
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-2">
                 {experienceAndReach.stats.map((stat, idx) => (
                   <div key={idx} className="bg-white/10 border border-white/20 p-4 rounded-xl text-center space-y-1">
-                    <div className="text-2xl sm:text-3xl font-bold font-mono text-[#9EDB45]">{stat.number}</div>
+                    <div className="text-2xl sm:text-3xl font-bold font-sans text-[#9EDB45]">{stat.number}</div>
                     <div className="text-[10px] font-bold font-display uppercase text-[#D6D6D6] tracking-wider">{stat.label}</div>
                   </div>
                 ))}
@@ -364,7 +364,7 @@ export default function AboutPage({ setView, openEnquiryModal, setActiveLabByNam
             ========================================================================= */}
         <section id="why-choose-us" className="space-y-6">
           <div className="text-center space-y-2">
-            <span className="text-xs font-mono font-bold tracking-widest text-[#2CC2A5] uppercase bg-white px-3 py-1 rounded-full border border-[#2CC2A5]/30 inline-block">
+            <span className="text-xs font-sans font-semibold tracking-wide text-[#2CC2A5] uppercase bg-white px-3 py-1 rounded-full border border-[#2CC2A5]/30 inline-block">
               Core Differentiators
             </span>
             <h2 className="text-2xl sm:text-3xl font-bold font-display uppercase tracking-tight text-[#303033]">
@@ -447,7 +447,7 @@ export default function AboutPage({ setView, openEnquiryModal, setActiveLabByNam
             ========================================================================= */}
         <section id="contact-info" className="bg-white rounded-2xl border border-[#DDE8E3] p-6 sm:p-8 shadow-sm space-y-6">
           <div className="border-l-4 border-[#33C98C] pl-4 space-y-1">
-            <span className="text-xs font-mono font-bold text-[#2CC2A5] uppercase tracking-wider">Get In Touch</span>
+            <span className="text-xs font-sans font-semibold text-[#2CC2A5] uppercase tracking-wide">Get In Touch</span>
             <h2 className="text-2xl sm:text-3xl font-bold font-display uppercase tracking-tight text-[#303033]">
               Office &amp; Contact Information
             </h2>
@@ -468,12 +468,12 @@ export default function AboutPage({ setView, openEnquiryModal, setActiveLabByNam
               <div className="flex items-center gap-2">
                 <Mail className="h-4 w-4 text-[#33C98C]" />
                 <span className="font-bold text-[#303033]">Email:</span>
-                <a href={`mailto:${companyInfo.email}`} className="text-[#33C98C] font-mono font-bold hover:underline">{companyInfo.email}</a>
+                <a href={`mailto:${companyInfo.email}`} className="text-[#33C98C] font-sans font-bold hover:underline">{companyInfo.email}</a>
               </div>
               <div className="flex items-center gap-2">
                 <Phone className="h-4 w-4 text-[#33C98C]" />
                 <span className="font-bold text-[#303033]">Contact Phone:</span>
-                <a href={`tel:${companyInfo.phone.replace(/[^0-9+]/g, '')}`} className="text-[#303033] font-mono font-bold hover:underline">{companyInfo.phone}</a>
+                <a href={`tel:${companyInfo.phone.replace(/[^0-9+]/g, '')}`} className="text-[#303033] font-sans font-bold hover:underline">{companyInfo.phone}</a>
               </div>
             </div>
 

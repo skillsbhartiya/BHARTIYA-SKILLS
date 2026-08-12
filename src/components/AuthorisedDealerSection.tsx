@@ -17,7 +17,7 @@ export default function AuthorisedDealerSection({
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-10">
         {/* Section Header */}
         <div className="text-center space-y-2.5 max-w-3xl mx-auto">
-          <span className="text-xs font-mono font-bold tracking-widest text-[#2CC2A5] uppercase bg-[#ECFAF4] px-3 py-1 rounded-full border border-[#2CC2A5]/30 inline-flex items-center gap-1.5">
+          <span className="text-xs font-sans font-semibold tracking-wide text-[#2CC2A5] uppercase bg-[#ECFAF4] px-3 py-1 rounded-full border border-[#2CC2A5]/30 inline-flex items-center gap-1.5">
             <ShieldCheck className="h-3.5 w-3.5 text-[#33C98C]" />
             Official Supply Network
           </span>

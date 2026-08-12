@@ -18,9 +18,8 @@ import EnquiryForm from "./components/EnquiryForm";
 import LabDetailsModal from "./components/LabDetailsModal";
 import AboutPage from "./components/AboutPage";
 import SpecializedLabs from "./components/SpecializedLabs";
-import TestimonialsSection from "./components/TestimonialsSection";
 import SEOHead from "./components/SEOHead";
-import Breadcrumbs from "./components/Breadcrumbs";
+import WebsiteLoader from "./components/WebsiteLoader";
 import { LabSolution } from "./types";
 
 /**
@@ -97,12 +96,48 @@ export default function App() {
   const productCategories = ["All", "Medical & Healthcare", "Automotive", "Electrical", "Electronics", "Agriculture", "Computer & Classroom", "Apparel & Garment", "Telecom", "Solar & Renewable", "Plumbing", "Food Processing", "Media & Studio"];
 
   // Handle callback requisition submission
-  const handleCallbackSubmit = (e: React.FormEvent) => {
+  const handleCallbackSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!callbackForm.name || !callbackForm.phone) {
       alert("Please fill in Name and Phone Number.");
       return;
     }
+
+    const accessKey = (import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || "").trim();
+    const isValidUuid = /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/.test(accessKey);
+
+    if (accessKey && accessKey !== "YOUR_ACCESS_KEY" && isValidUuid) {
+      try {
+        await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+          },
+          body: JSON.stringify({
+            access_key: accessKey,
+            subject: "New Website Callback Request - Bhartiya Skills LLP",
+            from_name: "Bhartiya Skills LLP Website",
+            name: callbackForm.name.trim(),
+            email: callbackForm.email.trim() || "not-provided@organisation.in",
+            replyto: callbackForm.email.trim() || undefined,
+            message: `New instant callback request from Bhartiya Skills LLP Website
+
+Full Name: ${callbackForm.name.trim()}
+Mobile Number: ${callbackForm.phone.trim()}
+Email Address: ${callbackForm.email.trim() || "N/A"}
+Requested Trade Setup: ${callbackForm.lab}
+Additional Notes: ${callbackForm.message || "N/A"}
+
+Source:
+Bhartiya Skills LLP Website - Instant Callback Widget`,
+          }),
+        });
+      } catch (err) {
+        console.error("Callback submission error:", err);
+      }
+    }
+
     setCallbackSuccess(true);
     setTimeout(() => {
       setCallbackSuccess(false);
@@ -196,7 +231,7 @@ export default function App() {
       <section className="py-12 bg-[#ECFAF4] animate-in fade-in duration-200">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-8">
           <div className="text-center space-y-2">
-            <span className="text-xs font-mono font-bold tracking-widest text-[#2CC2A5] uppercase bg-white px-3 py-1 rounded-full border border-[#2CC2A5]/30 inline-block">
+            <span className="text-xs font-sans font-semibold tracking-wide text-[#2CC2A5] uppercase bg-white px-3 py-1 rounded-full border border-[#2CC2A5]/30 inline-block">
               Vocational &amp; Institutional Trades
             </span>
             <h1 className="text-3xl font-bold font-display tracking-tight uppercase text-[#303033]">
@@ -263,7 +298,7 @@ export default function App() {
       <section className="py-12 bg-[#F5F7F6] animate-in fade-in duration-200">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-8">
           <div className="text-center space-y-2">
-            <span className="text-xs font-mono font-bold tracking-widest text-[#2CC2A5] uppercase bg-white px-3 py-1 rounded-full border border-[#2CC2A5]/30 inline-block">
+            <span className="text-xs font-sans font-semibold tracking-wide text-[#2CC2A5] uppercase bg-white px-3 py-1 rounded-full border border-[#2CC2A5]/30 inline-block">
               Equipments &amp; Tools Catalog
             </span>
             <h1 className="text-3xl font-bold font-display tracking-tight uppercase text-[#303033]">
@@ -335,7 +370,7 @@ export default function App() {
                     <p className="text-[#5B5B5D] text-xs leading-relaxed font-sans">{p.description}</p>
                   </div>
                   <div className="flex items-center justify-between pt-2 border-t border-[#DDE8E3] mt-auto">
-                    <span className="text-[#5B5B5D] text-[10px] font-mono tracking-wider uppercase font-bold">Request Price</span>
+                    <span className="text-[#5B5B5D] text-[10px] font-sans tracking-wide uppercase font-bold">Request Price</span>
                     <button
                       onClick={() => {
                         setCallbackForm((prev) => ({ ...prev, message: `Quotation request for: ${p.title} (${p.category})` }));
@@ -364,7 +399,7 @@ export default function App() {
       <section className="py-12 bg-[#F5F7F6] animate-in fade-in duration-200">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-8">
           <div className="text-center space-y-2">
-            <span className="text-xs font-mono font-bold tracking-widest text-[#2CC2A5] uppercase bg-white px-3 py-1 rounded-full border border-[#2CC2A5]/30 inline-block">
+            <span className="text-xs font-sans font-semibold tracking-wide text-[#2CC2A5] uppercase bg-white px-3 py-1 rounded-full border border-[#2CC2A5]/30 inline-block">
               Completed Turnkey Works
             </span>
             <h1 className="text-3xl font-bold font-display tracking-tight uppercase text-[#303033]">
@@ -412,7 +447,7 @@ export default function App() {
                 </div>
                 <div className="p-4 flex-1 flex flex-col justify-between">
                   <div className="space-y-2">
-                    <span className="text-[10px] font-mono tracking-wider font-bold text-[#2CC2A5] uppercase">
+                    <span className="text-[10px] font-sans tracking-wide font-bold text-[#2CC2A5] uppercase">
                       {p.location}
                     </span>
                     <h4 className="font-bold font-display uppercase tracking-wide text-[#303033] text-sm leading-snug">{p.title}</h4>
@@ -451,7 +486,7 @@ export default function App() {
 
         <div className="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
           <div className="lg:col-span-7 space-y-6">
-            <div className="inline-flex items-center gap-1.5 rounded-full bg-white/10 border border-white/20 px-3.5 py-1 text-xs font-mono font-bold text-[#9EDB45] tracking-wide uppercase backdrop-blur-xs">
+            <div className="inline-flex items-center gap-1.5 rounded-full bg-white/10 border border-white/20 px-3.5 py-1 text-xs font-sans font-semibold text-[#9EDB45] tracking-wide uppercase backdrop-blur-xs">
               <Sparkles className="h-3.5 w-3.5 text-[#F8D61D]" />
               Pan-India Project Execution
             </div>
@@ -477,7 +512,7 @@ export default function App() {
               </button>
             </div>
 
-            <p className="text-[11px] font-mono font-bold text-[#D6D6D6] uppercase tracking-widest pt-4">
+            <p className="text-xs sm:text-sm font-sans font-medium text-[#D6D6D6] uppercase tracking-normal leading-relaxed pt-4">
               &ldquo;Serving Government Departments, ITIs, Colleges, Universities, Skill Centres and Institutional Projects Across India.&rdquo;
             </p>
           </div>
@@ -500,27 +535,27 @@ export default function App() {
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="bg-[#ECFAF4] rounded-xl border border-[#2CC2A5] p-6 md:p-8 shadow-sm grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 text-center">
           <div className="space-y-1">
-            <div className="text-2xl font-mono font-bold text-[#33C98C] sm:text-3xl">16+</div>
+            <div className="text-2xl font-sans font-bold text-[#33C98C] sm:text-3xl">16+</div>
             <div className="text-[10px] font-bold font-display text-[#303033] uppercase tracking-wider">Lab Categories</div>
           </div>
           <div className="space-y-1">
-            <div className="text-2xl font-mono font-bold text-[#33C98C] sm:text-3xl">100%</div>
+            <div className="text-2xl font-sans font-bold text-[#33C98C] sm:text-3xl">100%</div>
             <div className="text-[10px] font-bold font-display text-[#303033] uppercase tracking-wider">Pan-India Logistic</div>
           </div>
           <div className="space-y-1">
-            <div className="text-2xl font-mono font-bold text-[#33C98C] sm:text-3xl">Turnkey</div>
+            <div className="text-2xl font-sans font-bold text-[#33C98C] sm:text-3xl">Turnkey</div>
             <div className="text-[10px] font-bold font-display text-[#303033] uppercase tracking-wider">Setup &amp; Training</div>
           </div>
           <div className="space-y-1">
-            <div className="text-2xl font-mono font-bold text-[#33C98C] sm:text-3xl">NCVT</div>
+            <div className="text-2xl font-sans font-bold text-[#33C98C] sm:text-3xl">NCVT</div>
             <div className="text-[10px] font-bold font-display text-[#303033] uppercase tracking-wider">Aligned Equipment</div>
           </div>
           <div className="space-y-1">
-            <div className="text-2xl font-mono font-bold text-[#33C98C] sm:text-3xl">ISO</div>
+            <div className="text-2xl font-sans font-bold text-[#33C98C] sm:text-3xl">ISO</div>
             <div className="text-[10px] font-bold font-display text-[#303033] uppercase tracking-wider">9001:2015 Certified</div>
           </div>
           <div className="space-y-1">
-            <div className="text-2xl font-mono font-bold text-[#33C98C] sm:text-3xl">PAN</div>
+            <div className="text-2xl font-sans font-bold text-[#33C98C] sm:text-3xl">PAN</div>
             <div className="text-[10px] font-bold font-display text-[#303033] uppercase tracking-wider">India Deployment</div>
           </div>
         </div>
@@ -533,7 +568,7 @@ export default function App() {
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="bg-white border border-[#DDE8E3] rounded-xl p-6 sm:p-10 shadow-md grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-7 space-y-4">
-            <span className="text-xs font-mono font-bold tracking-widest text-[#2CC2A5] uppercase bg-[#ECFAF4] px-3 py-1 rounded-full border border-[#2CC2A5]/30 inline-block">
+            <span className="text-xs font-sans font-semibold tracking-wide text-[#2CC2A5] uppercase bg-[#ECFAF4] px-3 py-1 rounded-full border border-[#2CC2A5]/30 inline-block">
               Institutional Expertise
             </span>
             <h2 className="text-2xl sm:text-3xl font-bold font-display tracking-tight text-[#303033] uppercase">
@@ -613,7 +648,7 @@ export default function App() {
       {/* 5. Lab Solutions Grid Highlight */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="text-center space-y-2">
-          <span className="text-xs font-mono font-bold tracking-widest text-[#2CC2A5] uppercase bg-[#ECFAF4] px-3 py-1 rounded-full border border-[#2CC2A5]/30 inline-block">
+          <span className="text-xs font-sans font-semibold tracking-wide text-[#2CC2A5] uppercase bg-[#ECFAF4] px-3 py-1 rounded-full border border-[#2CC2A5]/30 inline-block">
             Exhaustive Trade Portfolio
           </span>
           <h2 className="text-2xl sm:text-3xl font-bold font-display tracking-tight uppercase text-[#303033]">
@@ -688,7 +723,7 @@ export default function App() {
       {/* 7. Turnkey Process Workflow Summary */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="text-center space-y-2">
-          <span className="text-xs font-mono font-bold tracking-widest text-[#2CC2A5] uppercase bg-[#ECFAF4] px-3 py-1 rounded-full border border-[#2CC2A5]/30 inline-block">
+          <span className="text-xs font-sans font-semibold tracking-wide text-[#2CC2A5] uppercase bg-[#ECFAF4] px-3 py-1 rounded-full border border-[#2CC2A5]/30 inline-block">
             Project Lifecycle
           </span>
           <h2 className="text-2xl sm:text-3xl font-bold font-display tracking-tight uppercase text-[#303033]">
@@ -706,7 +741,7 @@ export default function App() {
               className="bg-white border border-[#DDE8E3] p-4 rounded-xl shadow-xs hover:border-[#33C98C] transition-all"
             >
               <div className="flex items-center justify-between mb-2">
-                <span className="text-[10px] font-mono font-bold text-[#2CC2A5] uppercase">PHASE {idx + 1}</span>
+                <span className="text-[10px] font-sans font-semibold text-[#2CC2A5] uppercase">PHASE {idx + 1}</span>
                 <span className="h-6 w-6 rounded-md bg-[#33C98C] text-white font-bold font-display text-[11px] flex items-center justify-center">
                   {idx + 1}
                 </span>
@@ -718,13 +753,10 @@ export default function App() {
         </div>
       </section>
 
-      {/* 8. Testimonials Section */}
-      <TestimonialsSection />
-
       {/* 9. Frequently Asked Questions (FAQ) Accordion */}
       <section className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="text-center space-y-2">
-          <span className="text-xs font-mono font-bold tracking-widest text-[#2CC2A5] uppercase bg-[#ECFAF4] px-3 py-1 rounded-full border border-[#2CC2A5]/30 inline-block">
+          <span className="text-xs font-sans font-semibold tracking-wide text-[#2CC2A5] uppercase bg-[#ECFAF4] px-3 py-1 rounded-full border border-[#2CC2A5]/30 inline-block">
             Procurement &amp; Technical Clarifications
           </span>
           <h2 className="text-2xl sm:text-3xl font-bold font-display tracking-tight uppercase text-[#303033]">
@@ -758,7 +790,7 @@ export default function App() {
         <div className="bg-[#303033] text-white rounded-2xl p-8 sm:p-12 text-center space-y-6 relative overflow-hidden shadow-xl border border-[#4B4B4D]">
           <div className="absolute -top-12 -left-12 h-48 w-48 bg-[#33C98C]/20 rounded-full blur-2xl" />
           <div className="space-y-2 relative z-10">
-            <span className="text-xs font-mono font-bold tracking-widest text-[#9EDB45] uppercase bg-white/10 px-3 py-1 rounded-full border border-white/20 inline-block">
+            <span className="text-xs font-sans font-semibold tracking-wide text-[#9EDB45] uppercase bg-white/10 px-3 py-1 rounded-full border border-white/20 inline-block">
               Institutional Requisitions Desk
             </span>
             <h2 className="text-2xl sm:text-4xl font-bold font-display uppercase tracking-tight text-white">
@@ -791,7 +823,7 @@ export default function App() {
   const NotFoundRouteView = () => (
     <section className="py-20 bg-[#F5F7F6] min-h-[60vh] flex items-center justify-center font-sans">
       <div className="max-w-xl mx-auto px-4 text-center space-y-6">
-        <div className="inline-flex h-20 w-20 items-center justify-center rounded-2xl bg-[#ECFAF4] text-[#33C98C] border border-[#2CC2A5] shadow-inner font-mono font-bold text-3xl">
+        <div className="inline-flex h-20 w-20 items-center justify-center rounded-2xl bg-[#ECFAF4] text-[#33C98C] border border-[#2CC2A5] shadow-inner font-sans font-bold text-3xl">
           404
         </div>
         <div className="space-y-2">
@@ -845,6 +877,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#FFFFFF] font-sans text-[#5B5B5D] flex flex-col justify-between">
+      <WebsiteLoader />
       <LegacyUrlCleaner />
 
       {/* Dynamic SEO Head & Schema.org JSON-LD Manager */}
@@ -861,12 +894,6 @@ export default function App() {
           navigate("/enquiry");
           window.scrollTo({ top: 300, behavior: "smooth" });
         }}
-      />
-
-      {/* Breadcrumbs Navigation */}
-      <Breadcrumbs
-        activeLabName={activeLab ? activeLab.name : null}
-        onClearActiveLab={() => setActiveLab(null)}
       />
 
       {/* Main Viewport Content */}
@@ -920,7 +947,7 @@ export default function App() {
               <section className="py-12 bg-white animate-in fade-in duration-200">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-8">
                   <div className="text-center space-y-2">
-                    <span className="text-xs font-mono font-bold tracking-widest text-[#2CC2A5] uppercase bg-[#ECFAF4] px-3 py-1 rounded-full border border-[#2CC2A5]/30 inline-block">
+                    <span className="text-xs font-sans font-semibold tracking-wide text-[#2CC2A5] uppercase bg-[#ECFAF4] px-3 py-1 rounded-full border border-[#2CC2A5]/30 inline-block">
                       Media Showcase
                     </span>
                     <h1 className="text-3xl font-bold font-display tracking-tight uppercase text-[#303033]">
@@ -949,7 +976,7 @@ export default function App() {
                         </div>
                         <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-[#303033] via-[#303033]/80 to-transparent p-3 text-white">
                           <h4 className="font-bold font-display uppercase tracking-wide text-xs leading-tight">{img.title}</h4>
-                          <p className="text-[10px] text-[#9EDB45] mt-1 uppercase font-mono tracking-wider font-bold">Click to view</p>
+                          <p className="text-[10px] text-[#9EDB45] mt-1 uppercase font-sans tracking-wide font-semibold">Click to view</p>
                         </div>
                       </div>
                     ))}
@@ -964,7 +991,7 @@ export default function App() {
               <section className="py-12 bg-[#F5F7F6] animate-in fade-in duration-200">
                 <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 space-y-8">
                   <div className="text-center space-y-2">
-                    <span className="text-xs font-mono font-bold tracking-widest text-[#2CC2A5] uppercase bg-white px-3 py-1 rounded-full border border-[#2CC2A5]/30 inline-block">
+                    <span className="text-xs font-sans font-semibold tracking-wide text-[#2CC2A5] uppercase bg-white px-3 py-1 rounded-full border border-[#2CC2A5]/30 inline-block">
                       Technical Requisitions
                     </span>
                     <h1 className="text-3xl font-bold font-display tracking-tight uppercase text-[#303033]">
@@ -1036,7 +1063,7 @@ export default function App() {
               <div className="rounded-xl bg-[#F5F7F6] p-2.5 flex items-center justify-between">
                 <div>
                   <p className="text-[10px] font-bold uppercase tracking-wider text-[#2CC2A5]">Direct Phone &amp; WhatsApp</p>
-                  <p className="text-xs font-bold text-[#303033] font-mono">+91 88603 46363</p>
+                  <p className="text-xs font-bold text-[#303033] font-sans">+91 88603 46363</p>
                 </div>
                 <a
                   href="tel:+918860346363"
@@ -1144,7 +1171,7 @@ function IndustriesRouteView({ industries }: { industries: Array<{ name: string;
     <section className="py-12 bg-white animate-in fade-in duration-200">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="text-center space-y-2">
-          <span className="text-xs font-mono font-bold tracking-widest text-[#2CC2A5] uppercase bg-[#ECFAF4] px-3 py-1 rounded-full border border-[#2CC2A5]/30 inline-block">
+          <span className="text-xs font-sans font-semibold tracking-wide text-[#2CC2A5] uppercase bg-[#ECFAF4] px-3 py-1 rounded-full border border-[#2CC2A5]/30 inline-block">
             Service Demographics
           </span>
           <h1 className="text-3xl font-bold font-display tracking-tight uppercase text-[#303033]">
@@ -1192,7 +1219,7 @@ function ContactRouteView({
     <section className="py-12 bg-white animate-in fade-in duration-200">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-10">
         <div className="text-center space-y-2">
-          <span className="text-xs font-mono font-bold tracking-widest text-[#2CC2A5] uppercase bg-[#ECFAF4] px-3 py-1 rounded-full border border-[#2CC2A5]/30 inline-block">
+          <span className="text-xs font-sans font-semibold tracking-wide text-[#2CC2A5] uppercase bg-[#ECFAF4] px-3 py-1 rounded-full border border-[#2CC2A5]/30 inline-block">
             Connect With Support
           </span>
           <h1 className="text-3xl font-bold font-display tracking-tight uppercase text-[#303033]">
@@ -1224,7 +1251,7 @@ function ContactRouteView({
                   <Phone className="h-5 w-5 text-[#33C98C] flex-shrink-0" />
                   <div>
                     <strong className="text-[#303033]">Technical Support Desk:</strong>
-                    <p className="text-[#5B5B5D] text-xs mt-0.5"><a href="tel:+918860346363" className="hover:text-[#33C98C] font-mono font-bold">+91 8860346363</a></p>
+                    <p className="text-[#5B5B5D] text-xs mt-0.5"><a href="tel:+918860346363" className="hover:text-[#33C98C] font-sans font-bold">+91 8860346363</a></p>
                   </div>
                 </div>
 
@@ -1232,7 +1259,7 @@ function ContactRouteView({
                   <Mail className="h-5 w-5 text-[#33C98C] flex-shrink-0" />
                   <div>
                     <strong className="text-[#303033]">Official Communication Email ID:</strong>
-                    <p className="text-[#5B5B5D] text-xs mt-0.5"><a href="mailto:skillsbhartiya@gmail.com" className="hover:text-[#33C98C] font-mono font-bold">skillsbhartiya@gmail.com</a></p>
+                    <p className="text-[#5B5B5D] text-xs mt-0.5"><a href="mailto:skillsbhartiya@gmail.com" className="hover:text-[#33C98C] font-sans font-bold">skillsbhartiya@gmail.com</a></p>
                   </div>
                 </div>
               </div>

@@ -15,7 +15,7 @@ export default function LabDetailsModal({ lab, onClose, onRequestProposal }: Lab
         {/* Header banner */}
         <div className="bg-[#303033] text-white p-5 flex justify-between items-center relative border-b-2 border-[#33C98C]">
           <div>
-            <span className="text-[10px] font-mono font-bold tracking-wider text-[#9EDB45] uppercase bg-white/10 px-2 py-0.5 rounded-md">
+            <span className="text-[10px] font-sans font-semibold tracking-wide text-[#9EDB45] uppercase bg-white/10 px-2 py-0.5 rounded-md">
               Lab Solution Category
             </span>
             <h3 className="text-xl font-bold font-display tracking-tight uppercase text-white mt-1">

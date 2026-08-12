@@ -244,40 +244,6 @@ export default function SEOHead({
       }
     };
 
-    // BreadcrumbList Schema
-    const breadcrumbItems = [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": BASE_URL
-      }
-    ];
-
-    if (viewKey !== "home") {
-      breadcrumbItems.push({
-        "@type": "ListItem",
-        "position": 2,
-        "name": seo.title.split("|")[0].trim(),
-        "item": canonicalUrl
-      });
-    }
-
-    if (activeLab) {
-      breadcrumbItems.push({
-        "@type": "ListItem",
-        "position": 3,
-        "name": activeLab.name,
-        "item": canonicalUrl
-      });
-    }
-
-    const breadcrumbSchema = {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": breadcrumbItems
-    };
-
     // FAQPage Schema
     const faqSchema = {
       "@context": "https://schema.org",
@@ -323,8 +289,10 @@ export default function SEOHead({
 
     updateJsonLdScript("jsonld-org", organizationSchema);
     updateJsonLdScript("jsonld-localbusiness", localBusinessSchema);
-    updateJsonLdScript("jsonld-breadcrumb", breadcrumbSchema);
     updateJsonLdScript("jsonld-faq", faqSchema);
+
+    const existingBreadcrumb = document.getElementById("jsonld-breadcrumb");
+    if (existingBreadcrumb) existingBreadcrumb.remove();
 
     if (labSolutionSchema) {
       updateJsonLdScript("jsonld-service", labSolutionSchema);

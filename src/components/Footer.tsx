@@ -125,11 +125,11 @@ export default function Footer({}: FooterProps) {
             </li>
             <li className="flex items-center gap-2.5">
               <Phone className="h-4 w-4 text-[#F8D61D] flex-shrink-0" />
-              <a href="tel:+918860346363" className="hover:text-[#33C98C] font-mono font-bold text-white">+91 8860346363</a>
+              <a href="tel:+918860346363" className="hover:text-[#33C98C] font-sans font-bold text-white">+91 8860346363</a>
             </li>
             <li className="flex items-center gap-2.5">
               <Mail className="h-4 w-4 text-[#F8D61D] flex-shrink-0" />
-              <a href="mailto:skillsbhartiya@gmail.com" className="hover:text-[#33C98C] font-mono font-bold text-white">skillsbhartiya@gmail.com</a>
+              <a href="mailto:skillsbhartiya@gmail.com" className="hover:text-[#33C98C] font-sans font-bold text-white">skillsbhartiya@gmail.com</a>
             </li>
           </ul>
 

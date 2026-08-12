@@ -36,7 +36,7 @@ export default function SpecializedLabs({ onOpenEnquiry }: SpecializedLabsProps)
           <Wrench className="h-64 w-64 text-white" />
         </div>
         <div className="relative z-10 space-y-4 max-w-3xl">
-          <div className="inline-flex items-center gap-2 bg-[#9EDB45]/20 border border-[#9EDB45]/40 text-[#9EDB45] text-xs font-mono font-bold px-3.5 py-1 rounded-full uppercase tracking-widest">
+          <div className="inline-flex items-center gap-2 bg-[#9EDB45]/20 border border-[#9EDB45]/40 text-[#9EDB45] text-xs font-sans font-semibold px-3.5 py-1 rounded-full uppercase tracking-wide">
             <Sparkles className="h-3.5 w-3.5" />
             Specialized & Trade-Specific Lab Solutions
           </div>
@@ -104,7 +104,7 @@ export default function SpecializedLabs({ onOpenEnquiry }: SpecializedLabsProps)
           <div className="bg-white border border-[#DDE8E3] rounded-2xl p-6 sm:p-8 space-y-6 shadow-sm">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-[#DDE8E3] pb-4">
               <div>
-                <span className="text-xs font-mono font-bold text-[#2CC2A5] uppercase tracking-widest">
+                <span className="text-xs font-sans font-semibold text-[#2CC2A5] uppercase tracking-wide">
                   INC &amp; University Compliant
                 </span>
                 <h2 className="text-xl sm:text-2xl font-bold font-display uppercase text-[#303033] mt-1">
@@ -275,7 +275,7 @@ export default function SpecializedLabs({ onOpenEnquiry }: SpecializedLabsProps)
           <div className="bg-white border border-[#DDE8E3] rounded-2xl p-6 sm:p-8 space-y-6 shadow-sm">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-[#DDE8E3] pb-4">
               <div>
-                <span className="text-xs font-mono font-bold text-[#2CC2A5] uppercase tracking-widest">
+                <span className="text-xs font-sans font-semibold text-[#2CC2A5] uppercase tracking-wide">
                   NITI Aayog / AIM Compliant
                 </span>
                 <h2 className="text-xl sm:text-2xl font-bold font-display uppercase text-[#303033] mt-1">
@@ -303,7 +303,7 @@ export default function SpecializedLabs({ onOpenEnquiry }: SpecializedLabsProps)
                     <Cpu className="h-4 w-4" />
                   </div>
                   <div>
-                    <span className="text-[10px] font-mono font-bold text-[#2CC2A5] uppercase">Package P1</span>
+                    <span className="text-[10px] font-sans font-semibold text-[#2CC2A5] uppercase">Package P1</span>
                     <h3 className="font-bold font-display text-sm uppercase">Electronics, Sensors &amp; Microcontrollers</h3>
                   </div>
                 </div>
@@ -334,7 +334,7 @@ export default function SpecializedLabs({ onOpenEnquiry }: SpecializedLabsProps)
                     <Layers className="h-4 w-4 text-[#9EDB45]" />
                   </div>
                   <div>
-                    <span className="text-[10px] font-mono font-bold text-[#2CC2A5] uppercase">Package P2</span>
+                    <span className="text-[10px] font-sans font-semibold text-[#2CC2A5] uppercase">Package P2</span>
                     <h3 className="font-bold font-display text-sm uppercase">3D Printers, Power Tools &amp; Prototyping</h3>
                   </div>
                 </div>
@@ -365,7 +365,7 @@ export default function SpecializedLabs({ onOpenEnquiry }: SpecializedLabsProps)
                     <Bot className="h-4 w-4" />
                   </div>
                   <div>
-                    <span className="text-[10px] font-mono font-bold text-[#2CC2A5] uppercase">Package P3</span>
+                    <span className="text-[10px] font-sans font-semibold text-[#2CC2A5] uppercase">Package P3</span>
                     <h3 className="font-bold font-display text-sm uppercase">STEM Robotics &amp; DIY Drone Kits</h3>
                   </div>
                 </div>
@@ -396,7 +396,7 @@ export default function SpecializedLabs({ onOpenEnquiry }: SpecializedLabsProps)
                     <Package className="h-4 w-4" />
                   </div>
                   <div>
-                    <span className="text-[10px] font-mono font-bold text-[#2CC2A5] uppercase">Package P4</span>
+                    <span className="text-[10px] font-sans font-semibold text-[#2CC2A5] uppercase">Package P4</span>
                     <h3 className="font-bold font-display text-sm uppercase">Safety Gear, Benches &amp; Storage</h3>
                   </div>
                 </div>
@@ -430,7 +430,7 @@ export default function SpecializedLabs({ onOpenEnquiry }: SpecializedLabsProps)
           <div className="bg-white border border-[#DDE8E3] rounded-2xl p-6 sm:p-8 space-y-6 shadow-sm">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-[#DDE8E3] pb-4">
               <div>
-                <span className="text-xs font-mono font-bold text-[#2CC2A5] uppercase tracking-widest">
+                <span className="text-xs font-sans font-semibold text-[#2CC2A5] uppercase tracking-wide">
                   NCVT / DGT ITI Standard Syllabi
                 </span>
                 <h2 className="text-xl sm:text-2xl font-bold font-display uppercase text-[#303033] mt-1">
@@ -743,27 +743,6 @@ export default function SpecializedLabs({ onOpenEnquiry }: SpecializedLabsProps)
         </div>
       )}
 
-      {/* Requisition Banner */}
-      <div className="bg-[#ECFAF4] border border-[#33C98C] rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row justify-between items-center gap-6 shadow-sm">
-        <div className="space-y-2 max-w-2xl text-center md:text-left">
-          <span className="text-xs font-mono font-bold text-[#2CC2A5] uppercase tracking-widest">
-            Institutional Procurement &amp; BOQ Drafting
-          </span>
-          <h3 className="text-lg sm:text-xl font-bold font-display uppercase text-[#303033]">
-            Need Custom Specifications or Government Tender Alignment?
-          </h3>
-          <p className="text-xs text-[#5B5B5D] leading-relaxed">
-            Our engineering team drafts comprehensive BOQs matching institutional guidelines, syllabus standards, space constraints, and budget parameters across India.
-          </p>
-        </div>
-        <button
-          onClick={() => onOpenEnquiry("Specialized Trade Labs BOQ")}
-          className="rounded-md bg-[#33C98C] hover:bg-[#2AAA76] text-white px-6 py-3 text-xs font-bold font-display uppercase tracking-wider transition-all flex items-center gap-2 flex-shrink-0 cursor-pointer shadow-md"
-        >
-          <Send className="h-4 w-4" />
-          <span>Request Customized BOQ</span>
-        </button>
-      </div>
     </div>
   );
 }

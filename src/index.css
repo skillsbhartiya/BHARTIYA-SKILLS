@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 
 :root {
@@ -20,8 +20,8 @@
 
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Manrope", "Inter", sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-display: "Montserrat", "Inter", sans-serif;
+  --font-mono: "Inter", ui-sans-serif, system-ui, sans-serif;
 
   --color-brand-green: #33C98C;
   --color-brand-green-hover: #2AAA76;
@@ -40,6 +40,10 @@
   --color-text-heading: #303033;
   --color-text-body: #5B5B5D;
   --color-border-light: #DDE8E3;
+}
+
+h1, h2, h3, h4, h5, h6, .font-heading, .font-display {
+  font-family: var(--font-display);
 }
 
 body {
@@ -93,5 +97,21 @@ input:focus, select:focus, textarea:focus {
 
 .animate-marquee:hover {
   animation-play-state: paused;
+}
+
+@keyframes loaderProgress {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-loader-bar {
+  animation: loaderProgress 1.5s ease-in-out infinite;
 }
 
