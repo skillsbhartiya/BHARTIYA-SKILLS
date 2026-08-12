@@ -46,18 +46,18 @@ export default function Header({ openEnquiryModal }: HeaderProps) {
         </span>
       </div>
 
-      <div className="mx-auto flex max-w-7xl h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex max-w-[1600px] h-16 items-center justify-between px-3 sm:px-5 lg:px-6 xl:px-8 gap-2 flex-nowrap">
         {/* Brand Logo - Official Logo Component */}
         <Link 
           to="/" 
-          className="flex items-center cursor-pointer py-1" 
+          className="flex items-center shrink-0 cursor-pointer py-1" 
           onClick={handleNavClick}
         >
           <Logo size="md" variant="default" />
         </Link>
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden xl:flex items-center gap-1">
+        <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1.5 2xl:gap-2.5 flex-nowrap shrink-0">
           {menuItems.map((item) => {
             const active = isLinkActive(item.path);
             return (
@@ -65,7 +65,7 @@ export default function Header({ openEnquiryModal }: HeaderProps) {
                 key={item.id}
                 to={item.path}
                 onClick={handleNavClick}
-                className={`px-2.5 py-1.5 rounded-md text-xs font-bold tracking-wide uppercase transition-all duration-200 font-display cursor-pointer ${
+                className={`whitespace-nowrap shrink-0 px-2 xl:px-2.5 2xl:px-3 py-1.5 rounded-md text-[11px] xl:text-[12px] 2xl:text-[13px] font-bold tracking-wide uppercase transition-all duration-200 font-sans cursor-pointer ${
                   active
                     ? "bg-[#ECFAF4] text-[#33C98C] border border-[#33C98C]"
                     : "text-[#4B4B4D] hover:text-[#33C98C] hover:bg-[#F5F7F6]"
@@ -78,20 +78,20 @@ export default function Header({ openEnquiryModal }: HeaderProps) {
         </nav>
 
         {/* CTA Buttons */}
-        <div className="hidden md:flex items-center gap-2.5">
+        <div className="hidden lg:flex items-center gap-2 shrink-0">
           <button
             onClick={() => {
               navigate("/enquiry");
               window.scrollTo({ top: 300, behavior: "smooth" });
             }}
-            className="rounded-md bg-[#33C98C] hover:bg-[#2AAA76] px-4 py-2 text-xs font-bold text-white transition-all shadow-md font-display uppercase tracking-wider cursor-pointer"
+            className="whitespace-nowrap shrink-0 rounded-md bg-[#33C98C] hover:bg-[#2AAA76] px-3 xl:px-3.5 2xl:px-4 py-2 text-[11px] xl:text-xs font-bold text-white transition-all shadow-md font-sans uppercase tracking-wider cursor-pointer"
           >
-            Request an Enquiry Form
+            REQUEST AN ENQUIRY FORM
           </button>
         </div>
 
         {/* Mobile Hamburger Trigger */}
-        <div className="flex xl:hidden items-center gap-2">
+        <div className="flex lg:hidden items-center gap-2">
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="p-2 rounded-md border border-[#DDE8E3] bg-[#F5F7F6] text-[#303033] hover:text-[#33C98C] transition-colors cursor-pointer"
@@ -103,7 +103,7 @@ export default function Header({ openEnquiryModal }: HeaderProps) {
 
       {/* Mobile Drawer Overlay */}
       {isOpen && (
-        <div className="xl:hidden border-t border-[#DDE8E3] bg-white shadow-xl animate-in fade-in slide-in-from-top-4 duration-200">
+        <div className="lg:hidden border-t border-[#DDE8E3] bg-white shadow-xl animate-in fade-in slide-in-from-top-4 duration-200">
           <div className="space-y-1 px-4 py-3">
             {menuItems.map((item) => {
               const active = isLinkActive(item.path);
@@ -112,7 +112,7 @@ export default function Header({ openEnquiryModal }: HeaderProps) {
                   key={item.id}
                   to={item.path}
                   onClick={handleNavClick}
-                  className={`w-full text-left px-3 py-2.5 rounded-md text-xs font-bold uppercase tracking-wider font-display flex items-center justify-between ${
+                  className={`w-full text-left px-3 py-2.5 rounded-md text-xs font-bold uppercase tracking-wider font-sans flex items-center justify-between ${
                     active
                       ? "bg-[#ECFAF4] text-[#33C98C] font-black border border-[#33C98C]"
                       : "text-[#4B4B4D] hover:bg-[#F5F7F6] hover:text-[#33C98C]"
@@ -132,9 +132,9 @@ export default function Header({ openEnquiryModal }: HeaderProps) {
                   navigate("/enquiry");
                   window.scrollTo({ top: 300, behavior: "smooth" });
                 }}
-                className="w-full rounded-md bg-[#33C98C] px-3 py-2.5 text-xs font-bold text-white shadow-md text-center font-display uppercase tracking-wider cursor-pointer"
+                className="w-full rounded-md bg-[#33C98C] px-3 py-2.5 text-xs font-bold text-white shadow-md text-center font-sans uppercase tracking-wider cursor-pointer"
               >
-                Request Enquiry
+                REQUEST AN ENQUIRY FORM
               </button>
             </div>
           </div>
